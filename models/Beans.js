@@ -28,9 +28,19 @@ const beansSchema = new mongoose.Schema({
         min: 0
     },
     roasting_date:{
-        
+        type: Date,
+        required: true
+    },
+    img_url:{
+        type: String,
+        trim: true,
+        required: true
+    },
+    isDeleted:{
+        type: Boolean,
+        default: false
     }
-})
+},{timestamps: true})
 
 const Bean = mongoose.model('Bean', beansSchema)
 module.exports = Bean
