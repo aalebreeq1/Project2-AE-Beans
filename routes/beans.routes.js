@@ -16,14 +16,14 @@ router.get('/', async (req, res) => {
 
 
 
-// router.get('/create', isAdmin, (req,res) => {
-//     try{
-//         res.render('create-bean.ejs')
-//     }
-//     catch (err){
-//         console.error(err)
-//     }
-// })
+router.get('/create', isAdmin, (req,res) => {
+    try{
+        res.render('create-bean.ejs')
+    }
+    catch (err){
+        console.error(err)
+    }
+})
 
 // router.post('/', isAdmin, (req,res)=> {
 //     try{
