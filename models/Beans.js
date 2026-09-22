@@ -1,6 +1,6 @@
 const mongoose =require('mongoose')
 
-const beansSchema = new mongoose.Schema({
+const beanSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true,
@@ -42,5 +42,5 @@ const beansSchema = new mongoose.Schema({
     }
 },{timestamps: true})
 
-const Bean = mongoose.model('Bean', beansSchema)
+const Bean = mongoose.model('Bean', beanSchema)
 module.exports = Bean
