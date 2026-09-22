@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const isAdmin = require("../middleware/is-admin")
+const isSignedIn = require("../middleware/is-signed-in")
 const Bean = require("../models/Bean")
 
 
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
 
 
 
-router.get('/create', isAdmin, (req,res) => {
+router.get('/create', isAdmin, isSignedIn, (req,res) => {
     try{
         res.render('create-bean.ejs')
     }
