@@ -71,5 +71,15 @@ router.put('/:id/update', isAdmin, isSignedIn, async (req, res) => {
     }
 })
 
+router.delete('/:id/delete', isAdmin, isSignedIn, async (req, res) => {
+    try {
+        const beanToDelete = await Bean.findByIdAndUpdate(req.params.id, { isDeleted: true })
+        res.redirect('/beans')
+    }
+    catch (err) {
+        console.error(err)
+    }
+})
+
 
 module.exports = router;
