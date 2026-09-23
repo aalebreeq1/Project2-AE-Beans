@@ -11,4 +11,13 @@ router.get("/", async (req, res) => {
         console.error(err)
     }
 })
+
+router.get("/create" , isAdmin, (req,res) =>{
+    try{
+        res.render("tools/create-tool.ejs")
+    }
+    catch (err) {
+        console.error(err)
+    }
+})
 module.exports = router
