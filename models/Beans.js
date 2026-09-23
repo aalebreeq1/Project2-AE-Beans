@@ -31,6 +31,11 @@ const beanSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    quantity:{
+        type: Number,
+        required: true,
+        min: 0
+    },
     img_url:{
         type: String,
         trim: true,
