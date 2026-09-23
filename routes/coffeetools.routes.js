@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const router = require("express").Router()
 const CoffeeTool = require("../models/CoffeeTool.model.js")
+const isAdmin = require("../middleware/is-admin.js")
 
 router.get("/", async (req, res) => {
     try {
@@ -16,7 +17,7 @@ router.get("/create" , isAdmin, (req,res) =>{
     try{
         res.render("tools/create-tool.ejs")
     }
-    catch (err) {
+    catch (err) { 
         console.error(err)
     }
 })
