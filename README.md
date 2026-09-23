@@ -1,16 +1,22 @@
 # Project Name
+
 AE Beans
+
 ## Overview
+
 A specialized e-commerce platform that bridges specialty coffee roasters/suppliers and customers by offering a curated catalog of Coffee Beans and Coffee Tools, complete with user management, logistics tracking, and order processing.
+
 ## Screenshots
 
 ## Technologies Used
-* CSS
-* JS
-* EJS
-* MongoDB
-* Express
-* NodeJS
+
+- CSS
+- JS
+- EJS
+- MongoDB
+- Express
+- NodeJS
+
 ## Getting Started
 
 Follow these steps to clone and run the project locally on your machine.
@@ -22,6 +28,7 @@ git clone [https://github.com/aalebreeq1/ae-beans.git](https://github.com/aalebr
 cd ae-beans
 
 ```
+
 ### 2. Install Dependencies
 
 Install all required Node packages:
@@ -71,6 +78,7 @@ http://localhost:3000
 ```
 
 ## User Stories
+
 1. As a customer, I want to login using my username and password.
 2. As a customer, I want to view the catalog of active coffee beans and coffee tools.
 3. As a customer, I want to place a new order by selecting items and choosing a shipping company.
@@ -83,22 +91,24 @@ http://localhost:3000
 10. As a shipping company user, I want to update the delivery progress and status of active orders assigned to me.
 
 ## Database Design
+
 ![alt text](<Project2 ERD.png>)
 
 ## Routes
 
 ### Beans Model Routes
 
-| Method | Route               | Description                                                |
-|--------|---------------------|------------------------------------------------------------|
-| GET    | `/beans`            |View the catalog list of active coffee beans.               |
-| GET    | `/beans/create`     |View the form to add a new coffee bean.                     |
-| POST   | `/beans`            |Submit the new bean form data to save it.                   |
-| GET    | `/beans/:id/edit`   |View the update form pre-filled with a specific bean's data.|
-| POST   | `/beans/:id/update` |Submit the updated bean data.                               |
-| POST   | `/beans/:id/delete` |Trigger the soft delete (isDeleted: true) for a bean.       |
+| Method | Route               | Description                                                  |
+| ------ | ------------------- | ------------------------------------------------------------ |
+| GET    | `/beans`            | View the catalog list of active coffee beans.                |
+| GET    | `/beans/create`     | View the form to add a new coffee bean.                      |
+| POST   | `/beans`            | Submit the new bean form data to save it.                    |
+| GET    | `/beans/:id/edit`   | View the update form pre-filled with a specific bean's data. |
+| POST   | `/beans/:id/update` | Submit the updated bean data.                                |
+| POST   | `/beans/:id/delete` | Trigger the soft delete (isDeleted: true) for a bean.        |
 
 ### Coffee Tools Routes
+
 | Method | Route                      | Description                                      |
 | ------ | -------------------------- | ------------------------------------------------ |
 | GET    | `/coffee-tools`            | View the list of active coffee gear and tools.   |
@@ -119,7 +129,6 @@ http://localhost:3000
 | POST   | `/shipping-companies/:id/update` | Submit the updated shipping company data.         |
 | POST   | `/shipping-companies/:id/delete` | Trigger the soft delete for a shipping company.   |
 
-
 ### Orders Routes
 
 | Method | Route                | Description                                                                            |
@@ -132,6 +141,7 @@ http://localhost:3000
 | POST   | `/orders/:id/delete` | Trigger the soft delete/cancellation of an order.                                      |
 
 ## Features
+
 Browse specialty coffee beans and brewing equipment.
 
 Place orders with multiple items and select a shipping partner.
@@ -146,9 +156,6 @@ Safe product archiving using soft deletes (isDeleted).
 
 Built using Node.js, Express, MongoDB, EJS, and CSS.
 
-
 ## Future Enhancements
-
-
 
 ## Credits
