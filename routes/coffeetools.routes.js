@@ -76,6 +76,7 @@ router.post("/:id/delete", isAdmin, async (req, res) => {
     res.redirect("/coffee-tools")
   } catch (err) {
     console.log(err)
+    
   }
 })
 module.exports = router
