@@ -66,4 +66,16 @@ router.post("/:id/update", isAdmin, async (req, res) => {
     console.log(err)
   }
 })
+
+router.post("/:id/delete", isAdmin, async (req, res) => {
+  try {
+    const deletedCoffeeTool = await CoffeeTool.findByIdAndUpdate(
+      req.params.id,
+      { is_deleted: true },
+    )
+    res.redirect("/coffee-tools")
+  } catch (err) {
+    console.log(err)
+  }
+})
 module.exports = router
