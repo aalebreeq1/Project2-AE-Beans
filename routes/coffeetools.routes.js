@@ -39,4 +39,13 @@ router.post("/", isAdmin, async (req, res) => {
   }
 });
 
+router.get("/:id/edit", isAdmin, async (req, res) => {
+  try {
+    const coffeeToolToEdit = await CoffeeTool.findById(req.params.id);
+    res.render("tools/edit-tool.ejs", { coffeeTool: coffeeToolToEdit });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;
