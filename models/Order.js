@@ -1,27 +1,23 @@
 const mongoose = require("mongoose")
 
 const itemSchema = new mongoose.Schema({
-  bean: {
+  itemType: {
+    type: String,
+    required: true,
+    enum: ["Bean", "CoffeeTool"],
+  },
+  itemRef: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Bean",
     required: true,
+    refPath: "items.itemType",
   },
-  beans_quantity: {
-    type: Number,
-    required: true,
-    min: 1,
-  },
-  coffee_tools: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "CoffeeTool",
-    required: true,
-  },
-  tools_quantity: {
+  quantity: {
     type: Number,
     required: true,
     min: 1,
   },
 })
+
 const orderSchema = new mongoose.Schema(
   {
     owner: {
@@ -30,10 +26,6 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
     items: [itemSchema],
-    isDeleted: {
-      type: Boolean,
-      default: false,
-    },
     total_price: {
       type: Number,
       required: true,
@@ -50,8 +42,7 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
     shipping_address: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User.address",
+      type: String,
       required: true,
     },
     isDeleted: {
