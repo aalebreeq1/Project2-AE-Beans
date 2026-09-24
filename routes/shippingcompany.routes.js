@@ -56,4 +56,22 @@ router.get("/:id/edit", isAdmin, async (req,res) =>{
         console.log(err)
     }
 })
+
+router.post("/:id/update", isAdmin, async (req,res) =>{
+    try{
+        const {name, address , phone_number, img_url} = req.body
+        await ShippingCompany.findByIdAndUpdate(req.params.id, {
+            name,
+            address,
+            phone_number,
+            img_url
+        })
+        res.redirect("/shipping-companies")
+    }
+    catch (err){
+        console.log(err)
+    }
+})
+
+
 module.exports = router
