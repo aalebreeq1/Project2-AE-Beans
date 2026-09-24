@@ -12,66 +12,71 @@ router.get("/", async (req, res) => {
   }
 })
 
-router.get("/create", isAdmin, (req, res) =>{
-    try {
-        res.render("shipping/create-shipping-company.ejs")
-    }
-    catch (err){
-        console.log(err)
-    }
+router.get("/create", isAdmin, (req, res) => {
+  try {
+    res.render("shipping/create-shipping-company.ejs")
+  } catch (err) {
+    console.log(err)
+  }
 })
 
-router.post("/", isAdmin, async (req, res) =>{
-    try{
-        const {name, address , phone_number, img_url} = req.body
-        const newShippingCompany = await  ShippingCompany.create({
-            name,
-            address,
-            phone_number,
-            img_url
-        })
-        res.redirect("/shipping-companies")
-    }
-    catch (err){
-        console.log(err)
-    }
+router.post("/", isAdmin, async (req, res) => {
+  try {
+    const { name, address, phone_number, img_url } = req.body
+    const newShippingCompany = await ShippingCompany.create({
+      name,
+      address,
+      phone_number,
+      img_url,
+    })
+    res.redirect("/shipping-companies")
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 router.get("/:id", async (req, res) => {
-    try{
-        const shippingCompany = await ShippingCompany.findById(req.params.id)
-        res.render("shipping/shipping-company-details.ejs", {shippingCompany})
-    }
-    catch (err){
-        console.log(err)
-    }
+  try {
+    const shippingCompany = await ShippingCompany.findById(req.params.id)
+    res.render("shipping/shipping-company-details.ejs", { shippingCompany })
+  } catch (err) {
+    console.log(err)
+  }
 })
 
-router.get("/:id/edit", isAdmin, async (req,res) =>{
-    try{
-        const shippingCompany = await ShippingCompany.findById(req.params.id)
-        res.render("shipping/edit-shipping-company.ejs", {shippingCompany})
-    }
-    catch (err){
-        console.log(err)
-    }
+router.get("/:id/edit", isAdmin, async (req, res) => {
+  try {
+    const shippingCompany = await ShippingCompany.findById(req.params.id)
+    res.render("shipping/edit-shipping-company.ejs", { shippingCompany })
+  } catch (err) {
+    console.log(err)
+  }
 })
 
-router.post("/:id/update", isAdmin, async (req,res) =>{
-    try{
-        const {name, address , phone_number, img_url} = req.body
-        await ShippingCompany.findByIdAndUpdate(req.params.id, {
-            name,
-            address,
-            phone_number,
-            img_url
-        })
-        res.redirect("/shipping-companies")
-    }
-    catch (err){
-        console.log(err)
-    }
+router.post("/:id/update", isAdmin, async (req, res) => {
+  try {
+    const { name, address, phone_number, img_url } = req.body
+    await ShippingCompany.findByIdAndUpdate(req.params.id, {
+      name,
+      address,
+      phone_number,
+      img_url,
+    })
+    res.redirect("/shipping-companies")
+  } catch (err) {
+    console.log(err)
+  }
 })
 
+router.post("/:id/delete", isAdmin, async (req, res) => {
+  try {
+    await ShippingCompany.findByIdAndUpdate(req.params.id, {
+      is_deleted: true,
+    })
+    res.redirect("/shipping-companies")
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 module.exports = router
