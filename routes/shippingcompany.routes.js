@@ -1,16 +1,22 @@
-const mongoose = require('mongoose')
-const router = require('express').Router()
-const ShippingCompany = require('../models/Shipping_company')
+const mongoose = require("mongoose")
+const router = require("express").Router()
+const ShippingCompany = require("../models/Shipping_company")
 
+router.get("/", async (req, res) => {
+  try {
+    const shippingCompanies = await ShippingCompany.find({ is_deleted: false })
+    res.render("shipping/all-shipping-companies.ejs", { shippingCompanies })
+  } catch (err) {
+    console.log(err)
+  }
+})
 
-router.get('/', async (req,res)=> {
-    try{
-        const shippingCompanies = await ShippingCompany.find({ is_deleted: false})
-        res.render('shipping/all-shipping-companies.ejs',{ shippingCompanies })
+router.get("/create", (req, res) =>{
+    try {
+        res.render("shipping/create-shipping-company.ejs")
     }
     catch (err){
         console.log(err)
     }
 })
-
 module.exports = router
