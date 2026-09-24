@@ -11,6 +11,15 @@ router.get("/", async (req, res) => {
     console.error(err)
   }
 })
+router.get("/:id", async (req, res) => {
+  try {
+    const coffeeTool = await CoffeeTool.findById(req.params.id)
+    res.render("tools/tool-details.ejs", { coffeeTool })
+  } catch (err) {
+    console.error(err)
+    res.redirect("/coffee-tools")
+  }
+})
 
 router.get("/create", isAdmin, (req, res) => {
   try {
@@ -76,7 +85,6 @@ router.post("/:id/delete", isAdmin, async (req, res) => {
     res.redirect("/coffee-tools")
   } catch (err) {
     console.log(err)
-    
   }
 })
 module.exports = router
