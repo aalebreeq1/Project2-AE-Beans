@@ -36,4 +36,14 @@ router.post("/", isAdmin, async (req, res) =>{
         console.log(err)
     }
 })
+
+router.get("/:id", async (req, res) => {
+    try{
+        const shippingCompany = await ShippingCompany.findById(req.params.id)
+        res.render("shipping/shipping-company-details.ejs", {shippingCompany})
+    }
+    catch (err){
+        console.log(err)
+    }
+})
 module.exports = router
