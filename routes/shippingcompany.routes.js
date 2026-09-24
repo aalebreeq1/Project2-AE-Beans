@@ -46,4 +46,14 @@ router.get("/:id", async (req, res) => {
         console.log(err)
     }
 })
+
+router.get("/:id/edit", isAdmin, async (req,res) =>{
+    try{
+        const shippingCompany = await ShippingCompany.findById(req.params.id)
+        res.render("shipping/edit-shipping-company.ejs", {shippingCompany})
+    }
+    catch (err){
+        console.log(err)
+    }
+})
 module.exports = router
