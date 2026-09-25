@@ -30,6 +30,7 @@ router.post("/", isSignedIn, async (req, res) => {
     console.log(err)
     res.redirect("/orders/checkout")
   }
+  
 })
 
 module.exports = router
