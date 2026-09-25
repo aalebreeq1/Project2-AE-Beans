@@ -30,7 +30,16 @@ router.post("/", isSignedIn, async (req, res) => {
     console.log(err)
     res.redirect("/orders/checkout")
   }
-  
+})
+
+router.get("/:id", isSignedIn, async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id)
+    res.render("order-details", { order })
+  } catch (err) {
+    console.log(err)
+    res.redirect("/all-orders")
+  }
 })
 
 module.exports = router
