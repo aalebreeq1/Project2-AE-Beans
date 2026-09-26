@@ -1,11 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit <%= bean.name %></title>
+    <title>AE Beans | Edit Bean</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
 </head>
+
 <body>
-    
+    <%- include('../partials/navbar') %>
+
+        <main class="main-container">
+            <div class="form-card-container">
+                <div class="form-card">
+                    <h2>Edit Coffee Bean</h2>
+                    <p class="form-subtitle">Update the details of this specialty coffee product</p>
+
+                    <% if (typeof errorMessage !=='undefined' && errorMessage) { %>
+                        <div class="error-message">
+                            <span>⚠️</span>
+                            <span>
+                                <%= errorMessage %>
+                            </span>
+                        </div>
+                        <% } %>
+
+                            <form action="/beans/<%= bean._id %>/update?_method=PUT" method="POST" class="bean-form">
+                                <div class="form-group">
+                                    <label for="name">Bean Name</label>
+                                    <input type="text" id="name" name="name" value="<%= bean.name %>" required
+                                        placeholder="e.g. Ethiopian Yirgacheffe" autocomplete="off" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="country_of_origin">Country of Origin</label>
+                                    <input type="text" id="country_of_origin" name="country_of_origin"
+                                        value="<%= bean.country_of_origin %>" required placeholder="e.g. Ethiopia" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="notes">Flavor Notes</label>
+                                    <input type="text" id="notes" name="notes" value="<%= bean.notes %>"
+                                        placeholder="e.g. Jasmine, Blueberry, Bergamot" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" rows="3" required
+                                        placeholder="Describe the roast profile and flavor journey..."><%= bean.description %></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="grading_score">Grading Score (Q-Score)</label>
+                                    <input type="number" id="grading_score" name="grading_score" step="0.25" min="0"
+                                        max="100" value="<%= bean.grading_score %>" placeholder="e.g. 88.5" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="price">Price (BHD)</label>
+                                    <input type="number" id="price" name="price" step="0.001" min="0"
+                                        value="<%= bean.price %>" required placeholder="18.990" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="roasting_date">Roasting Date</label>
+                                    <input type="date" id="roasting_date" name="roasting_date"
+                                        value="<%= bean.roasting_date ? new Date(bean.roasting_date).toISOString().split('T')[0] : '' %>"
+                                        required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="quantity">Stock Quantity (Bags)</label>
+                                    <input type="number" id="quantity" name="quantity" min="0"
+                                        value="<%= bean.quantity %>" required placeholder="25" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="img_url">Image URL</label>
+                                    <input type="url" id="img_url" name="img_url" value="<%= bean.img_url %>" required
+                                        placeholder="https://images.unsplash.com/..." />
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Update Bean</button>
+                                </div>
+                            </form>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
 </body>
+
 </html>

@@ -61,7 +61,7 @@
                                                 <span class="admin-label">Admin</span>
                                                 <div class="admin-buttons">
                                                     <a href="/beans/<%= bean._id %>/edit" class="btn-secondary">Edit</a>
-                                                    <form action="/beans/<%= bean._id %>/delete" method="POST"
+                                                    <form action="/beans/<%= bean._id %>/delete?_method=DELETE" method="POST"
                                                         style="display:inline;">
                                                         <button class="btn-danger" type="submit">Delete</button>
                                                     </form>
