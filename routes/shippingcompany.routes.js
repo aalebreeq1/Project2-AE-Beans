@@ -29,7 +29,7 @@ router.post("/", isAdmin, async (req, res) => {
       phone_number,
       img_url,
     })
-    res.redirect("/shipping-companies")
+    res.redirect("/all-shipping-companies")
   } catch (err) {
     console.log(err)
   }
@@ -62,7 +62,7 @@ router.put("/:id/update", isAdmin, async (req, res) => {
       phone_number,
       img_url,
     })
-    res.redirect("/shipping-companies")
+    res.redirect("/all-shipping-companies")
   } catch (err) {
     console.log(err)
   }
@@ -73,7 +73,7 @@ router.delete("/:id/delete", isAdmin, async (req, res) => {
     await ShippingCompany.findByIdAndUpdate(req.params.id, {
       is_deleted: true,
     })
-    res.redirect("/shipping-companies")
+    res.redirect("/all-shipping-companies")
   } catch (err) {
     console.log(err)
   }
