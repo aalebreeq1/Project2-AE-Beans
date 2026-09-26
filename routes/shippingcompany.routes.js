@@ -68,7 +68,7 @@ router.post("/:id/update", isAdmin, async (req, res) => {
   }
 })
 
-router.post("/:id/delete", isAdmin, async (req, res) => {
+router.delete("/:id/delete", isAdmin, async (req, res) => {
   try {
     await ShippingCompany.findByIdAndUpdate(req.params.id, {
       is_deleted: true,
