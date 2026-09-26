@@ -43,13 +43,29 @@ router.get("/:id/", isSignedIn, async (req, res) => {
   }
 })
 
-router.post("/:id/edit", isAdmin, async (req, res) => {
+router.get("/:id/edit", isAdmin, async (req, res) => {
   try {
     const foundOrder = await Order.findById(req.params.id)
     res.render("edit-order", { order: foundOrder })
   } catch (err) {
     console.log(err)
     res.redirect(`/orders/${req.params.id}/`)
+  }
+})
+
+router.put("/:id/update", isAdmin, async (req, res) => {
+  try {
+    const { items, total_price, shipping_company, shipping_address } = req.body
+    await Order.findByIdAndUpdate(req.params.id, {
+      items,
+      total_price,
+      shipping_company,
+      shipping_address,
+    })
+    res.redirect(`/orders/${req.params.id}/`)
+  } catch (err) {
+    console.log(err)
+    res.redirect(`/orders/${req.params.id}/edit`)
   }
 })
 
