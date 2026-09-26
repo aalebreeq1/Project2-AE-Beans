@@ -57,7 +57,7 @@ router.get("/:id/edit", isAdmin, async (req, res) => {
   }
 })
 
-router.post("/:id/update", isAdmin, async (req, res) => {
+router.put("/:id/update", isAdmin, async (req, res) => {
   try {
     const { name, category, price, quantity, img_url } = req.body
     const coffeeToolToUpdate = await CoffeeTool.findByIdAndUpdate(
