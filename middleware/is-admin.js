@@ -1,10 +1,11 @@
-const isSignedIn = require("./is-signed-in.js");
 const isAdmin = (req, res, next) => {
-  if (isSignedIn(req) && req.session.user.role === "admin") {
-    return next()
+
+  if (req.session && req.session.user && req.session.user.role === "admin") {
+    return next();
   }
-  req.session.errorMessage = "You must be an admin to access this page."
-  res.redirect("/homepage")
+  
+  req.session.errorMessage = "You must be an admin to access this page.";
+  return res.redirect("/"); 
 };
 
-module.exports = isAdmin
+module.exports = isAdmin;
