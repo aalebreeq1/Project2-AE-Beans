@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AE Beans | Shopping Cart</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
+    <link rel="stylesheet" href="/css/dashboard.style.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <main class="main-container">
+        <div class="dashboard-header">
+            <h1>Your Cart</h1>
+            <p>Review your selected items before proceeding to checkout.</p>
+        </div>
+
+        <% if (!cart || cart.items.length === 0) { %>
+            <div class="dashboard-section" style="text-align: center; padding: 4rem 2rem;">
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Your cart is currently empty.</p>
+                <a href="/beans" class="btn-primary" style="text-decoration: none;">Browse Coffee Beans</a>
+            </div>
+        <% } else { %>
+            <div class="dashboard-section">
+                <div class="dashboard-table-wrapper">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Type</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% cart.items.forEach(item => { %>
+                                <% if (item.itemRef) { %>
+                                    <tr>
+                                        <td><%= item.itemRef.name %></td>
+                                        <td><%= item.itemType %></td>
+                                        <td>BHD <%= Number(item.itemRef.price).toFixed(3) %></td>
+                                        <td><%= item.quantity %></td>
+                                        <td>BHD <%= Number(item.itemRef.price * item.quantity).toFixed(3) %></td>
+                                    </tr>
+                                <% } %>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; border-top: 1px solid var(--roast-border); padding-top: 20px;">
+                    <h2>Total: BHD <%= Number(totalPrice).toFixed(3) %></h2>
+                    <a href="/cart/checkout" class="btn-primary" style="text-decoration: none;">Proceed to Checkout</a>
+                </div>
+            </div>
+        <% } %>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

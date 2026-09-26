@@ -3,10 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    
+    <title>AE Beans | Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
+    <link rel="stylesheet" href="/css/dashboard.style.css">
 </head>
 <body>
-    
+    <%- include('./partials/navbar') %>
+
+    <main class="main-container">
+        <div style="margin-bottom: 30px;">
+            <h1>Admin Dashboard</h1>
+            <p class="form-subtitle">Welcome back! Manage your catalogs, inventory levels, and logistics partners.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <h3>Total Coffee Beans</h3>
+                <div class="stat-number"><%= beansCount %></div>
+            </div>
+            <div class="stat-card">
+                <h3>Coffee Tools</h3>
+                <div class="stat-number"><%= toolsCount %></div>
+            </div>
+            <div class="stat-card">
+                <h3>Shipping Partners</h3>
+                <div class="stat-number"><%= shippingCount %></div>
+            </div>
+        </div>
+
+        <div class="dashboard-section">
+            <h2>
+                <span>Recent Coffee Beans</span>
+                <a href="/beans" class="btn-secondary" style="font-size: 0.85rem; padding: 6px 12px; text-decoration: none;">View All</a>
+            </h2>
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Origin</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (beans.length === 0) { %>
+                        <tr><td colspan="4" style="text-align: center; color: #777;">No beans found.</td></tr>
+                    <% } else { %>
+                        <% beans.forEach(bean => { %>
+                            <tr>
+                                <td><a href="/beans/<%= bean._id %>"><%= bean.name %></a></td>
+                                <td> <%= bean.country_of_origin %></td>
+                                <td>BHD <%= Number(bean.price).toFixed(3) %></td>
+                                <td><%= bean.quantity %> bags</td>
+                            </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Recent Tools Section -->
+        <div class="dashboard-section">
+            <h2>
+                <span>Recent Coffee Tools</span>
+                <a href="/coffee-tools" class="btn-secondary" style="font-size: 0.85rem; padding: 6px 12px; text-decoration: none;">View All</a>
+            </h2>
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (tools.length === 0) { %>
+                        <tr><td colspan="4" style="text-align: center; color: #777;">No tools found.</td></tr>
+                    <% } else { %>
+                        <% tools.forEach(tool => { %>
+                            <tr>
+                                <td><a href="/coffee-tools/<%= tool._id %>"><%= tool.name %></a></td>
+                                <td><%= tool.category %></td>
+                                <td>BHD <%= Number(tool.price).toFixed(3) %></td>
+                                <td><%= tool.quantity %> units</td>
+                            </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="dashboard-section">
+            <h2>
+                <span>Shipping Partners</span>
+                <a href="/shipping-companies" class="btn-secondary" style="font-size: 0.85rem; padding: 6px 12px; text-decoration: none;">View All</a>
+            </h2>
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Hub Location</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (shippingCompanies.length === 0) { %>
+                        <tr><td colspan="3" style="text-align: center; color: #777;">No shipping partners found.</td></tr>
+                    <% } else { %>
+                        <% shippingCompanies.forEach(company => { %>
+                            <tr>
+                                <td><a href="/shipping-companies/<%= company._id %>"><%= company.name %></a></td>
+                                <td> <%= company.address %></td>
+                                <td> <%= company.phone_number %></td>
+                            </tr>
+                        <% }) %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <%- include('./partials/footer') %>
 </body>
 </html>

@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping Companies</title>
+    <title>AE Beans | Shipping Partners</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
 </head>
 <body>
-    
+    <%- include('../partials/navbar') %>
+
+    <main class="main-container">
+        <div class="catalog-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <h2>Our Shipping Partners</h2>
+                <p class="catalog-subtitle">Reliable logistics providers delivering your specialty coffee and gear</p>
+            </div>
+            <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                <div class="admin-actions-container">
+                    <a href="/shipping-companies/create" class="btn-primary" style="text-decoration: none;">Add Shipping Partner</a>
+                </div>
+            <% } %>
+        </div>
+
+        <% if (shippingCompanies.length === 0) { %>
+            <div class="empty-state" style="text-align: center; padding: 3rem;">
+                <p>No shipping companies available at the moment.</p>
+            </div>
+        <% } else { %>
+            <div class="catalog-grid">
+                <% shippingCompanies.forEach(company => { %>
+                    <div class="bean-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div class="bean-image-container" style="height: 180px; overflow: hidden; background: #f9f9f9; display: flex; align-items: center; justify-content: center;">
+                                <img src="<%= company.img_url %>" alt="<%= company.name %>" style="width: 100%; height: 100%; object-fit: contain; padding: 10px;" onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80'">
+                            </div>
+                            <div class="bean-card-content" style="padding: 1.25rem;">
+                                <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;"><%= company.name %></h3>
+                                <p class="origin-tag" style="margin-bottom: 0.4rem;">📍 <%= company.address %></p>
+                                <p class="notes-text" style="margin: 0;">📞 <%= company.phone_number %></p>
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions" style="padding: 0 1.25rem 1.25rem 1.25rem;">
+                            <a href="/shipping-companies/<%= company._id %>" class="btn-secondary" style="display: block; width: 100%; text-align: center; text-decoration: none; box-sizing: border-box;">View Details</a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+    </main>
+
+    <%- include('../partials/footer') %>
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AE Beans | My Orders</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
+    <link rel="stylesheet" href="/css/dashboard.style.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <main class="main-container">
+        <div class="dashboard-header">
+            <h1>Order History</h1>
+            <p>Track your specialty coffee deliveries and past purchases.</p>
+        </div>
+
+        <% if (orders.length === 0) { %>
+            <div class="dashboard-section" style="text-align: center; padding: 4rem 2rem;">
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">You haven't placed any orders yet.</p>
+                <a href="/beans" class="btn-primary" style="text-decoration: none;">Browse Coffee Beans</a>
+            </div>
+        <% } else { %>
+            <div class="dashboard-section">
+                <div class="dashboard-table-wrapper">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Shipping Partner</th>
+                                <th>Total Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% orders.forEach(order => { %>
+                                <tr>
+                                    <td><a href="/orders/<%= order._id %>">#<%= order._id.toString().slice(-6).toUpperCase() %></a></td>
+                                    <td><%= new Date(order.order_date).toLocaleDateString() %></td>
+                                    <td> <%= order.shipping_company ? order.shipping_company.name : 'Standard Courier' %></td>
+                                    <td><strong>BHD <%= Number(order.total_price).toFixed(3) %></strong></td>
+                                    <td>
+                                        <a href="/orders/<%= order._id %>" class="btn-secondary" style="font-size: 0.8rem; padding: 4px 10px; text-decoration: none;">View</a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <% } %>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

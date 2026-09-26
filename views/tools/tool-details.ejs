@@ -14,7 +14,7 @@
         <div class="bean-details-container">
             <div class="bean-details-card">
                 <div class="bean-details-image">
-                    <img src="<%= coffeeTool.img_url %>" alt="<%= coffeeTool.name %>" ">
+                    <img src="<%= coffeeTool.img_url %>" alt="<%= coffeeTool.name %>">
                 </div>
 
                 <div class="bean-details-content">
@@ -46,7 +46,12 @@
                     </div>
 
                     <div class="bean-actions-row">
-                        <button class="btn-primary">Add to Cart</button>
+                        <form action="/cart/add" method="POST" style="width: 100%; display: flex; gap: 10px; align-items: center;">
+                            <input type="hidden" name="itemType" value="CoffeeTool">
+                            <input type="hidden" name="itemId" value="<%= coffeeTool._id %>">
+                            <input type="number" name="quantity" value="1" min="1" max="<%= coffeeTool.quantity %>" style="width: 70px; padding: 10px; border: 1px solid var(--roast-border, #ccc); border-radius: 6px;">
+                            <button type="submit" class="btn-primary" style="flex: 1;">Add to Cart</button>
+                        </form>
                         <a href="/coffee-tools" class="btn-secondary">Back to Catalog</a>
                     </div>
 

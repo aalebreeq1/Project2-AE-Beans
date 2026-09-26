@@ -3,9 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= shippingCompany.name %> Details</title>
+    <title>AE Beans | <%= shippingCompany.name %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
 </head>
 <body>
-    
+    <%- include('../partials/navbar') %>
+
+    <main class="main-container">
+        <div class="bean-details-container">
+            <div class="bean-details-card">
+                <div class="bean-details-image">
+                    <img src="<%= shippingCompany.img_url %>" alt="<%= shippingCompany.name %>" onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80'">
+                </div>
+
+                <div class="bean-details-content">
+                    <div class="bean-header-row">
+                        <h2><%= shippingCompany.name %></h2>
+                        <span class="badge-score">Logistics Partner</span>
+                    </div>
+
+                    <div class="bean-meta-grid" style="margin-top: 20px;">
+                        <div class="meta-item">
+                            <span class="meta-label">Hub Address</span>
+                            <span class="meta-value">📍 <%= shippingCompany.address %></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Customer Support</span>
+                            <span class="meta-value">📞 <%= shippingCompany.phone_number %></span>
+                        </div>
+                    </div>
+
+                    <div class="bean-actions-row" style="margin-top: 30px;">
+                        <a href="/shipping-companies" class="btn-secondary">Back to Partners</a>
+                    </div>
+
+                    <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                        <div class="admin-toolbar show-admin-toolbar" style="margin-top: 25px;">
+                            <span class="admin-label">Admin Controls</span>
+                            <div class="admin-buttons">
+                                <a href="/shipping-companies/<%= shippingCompany._id %>/edit" class="btn-secondary">Edit Partner</a>
+                                <form action="/shipping-companies/<%= shippingCompany._id %>/delete?_method=DELETE" method="POST" style="display:inline;">
+                                    <button class="btn-danger" type="submit">Delete Partner</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
 </body>
 </html>

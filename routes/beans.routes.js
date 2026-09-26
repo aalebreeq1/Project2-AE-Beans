@@ -1,11 +1,27 @@
 const router = require("express").Router();
 const isAdmin = require("../middleware/is-admin");
 const Bean = require("../models/Beans");
+const Cart = require("../models/Cart");
 
 router.get("/", async (req, res) => {
   try {
     const allBeans = await Bean.find({ isDeleted: false });
-    res.render("beans/all-beans.ejs", { allBeans });
+    
+    let cartItemIds = [];
+    if (req.session.user) {
+      const cart = await Cart.findOne({ owner: req.session.user._id });
+      if (cart) {
+        cartItemIds = cart.items.map(item => item.itemRef.toString());
+      }
+    }
+
+    const beansWithCartStatus = allBeans.map(bean => {
+      const beanObj = bean.toObject();
+      beanObj.isInCart = cartItemIds.includes(bean._id.toString());
+      return beanObj;
+    });
+
+    res.render("beans/all-beans.ejs", { allBeans: beansWithCartStatus });
   } catch (err) {
     console.error(err);
     res.redirect("/");
@@ -34,7 +50,7 @@ router.post("/", isAdmin, async (req, res) => {
       img_url,
     } = req.body;
 
-    const newBean = await Bean.create({
+    await Bean.create({
       name,
       country_of_origin,
       notes,
@@ -46,7 +62,7 @@ router.post("/", isAdmin, async (req, res) => {
       img_url,
     });
 
-    res.redirect("/beans/")
+    res.redirect("/beans/");
   } catch (err) {
     console.error(err);
     res.redirect("/beans/create");

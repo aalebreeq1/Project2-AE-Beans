@@ -1,17 +1,34 @@
 const mongoose = require("mongoose");
 const router = require("express").Router();
 const CoffeeTool = require("../models/Coffee_tools.js");
+const Cart = require("../models/Cart");
 const isAdmin = require("../middleware/is-admin.js");
 
 router.get("/", async (req, res) => {
   try {
     const allTools = await CoffeeTool.find({ isDeleted: false });
-    res.render("tools/all-tools.ejs", { allTools });
+    
+    let cartItemIds = [];
+    if (req.session.user) {
+      const cart = await Cart.findOne({ owner: req.session.user._id });
+      if (cart) {
+        cartItemIds = cart.items.map(item => item.itemRef.toString());
+      }
+    }
+
+    const toolsWithCartStatus = allTools.map(tool => {
+      const toolObj = tool.toObject();
+      toolObj.isInCart = cartItemIds.includes(tool._id.toString());
+      return toolObj;
+    });
+
+    res.render("tools/all-tools.ejs", { allTools: toolsWithCartStatus });
   } catch (err) {
     console.error(err);
     res.redirect("/");
   }
 });
+
 router.get("/create", isAdmin, (req, res) => {
   try {
     res.render("tools/create-tool.ejs");
@@ -20,6 +37,7 @@ router.get("/create", isAdmin, (req, res) => {
     res.redirect("/coffee-tools");
   }
 });
+
 router.get("/:id", async (req, res) => {
   try {
     const coffeeTool = await CoffeeTool.findById(req.params.id);

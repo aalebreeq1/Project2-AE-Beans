@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const router = require("express").Router()
 const Order = require("../models/Order")
+const Cart = require("../models/Cart")
 const isSignedIn = require("../middleware/is-signed-in")
 const isAdmin = require("../middleware/is-admin")
 
@@ -13,7 +14,7 @@ router.get("/", isSignedIn, async (req, res) => {
       .populate("shipping_company")
       .populate("items.itemRef")
 
-    res.render("orders/all-orders", { orders })
+    res.render("orders/all-orders.ejs", { orders })
   } catch (err) {
     console.log(err)
     res.redirect("/")
@@ -22,20 +23,41 @@ router.get("/", isSignedIn, async (req, res) => {
 
 router.post("/", isSignedIn, async (req, res) => {
   try {
-    const { items, total_price, shipping_company, shipping_address } = req.body
+    const { shipping_company, shipping_address } = req.body
     const owner = req.session.user._id
+
+    const cart = await Cart.findOne({ owner }).populate("items.itemRef")
+    if (!cart || cart.items.length === 0) {
+      return res.redirect("/cart")
+    }
+
+    let total_price = 0
+    const orderItems = cart.items.map(cartItem => {
+      if (!cartItem.itemRef) return null
+      const subtotal = cartItem.itemRef.price * cartItem.quantity
+      total_price += subtotal
+      return {
+        itemType: cartItem.itemType,
+        itemRef: cartItem.itemRef._id,
+        quantity: cartItem.quantity
+      }
+    }).filter(Boolean)
 
     await Order.create({
       owner,
-      items,
+      items: orderItems,
       total_price,
       shipping_company,
       shipping_address,
     })
+
+    cart.items = []
+    await cart.save()
+
     res.redirect("/orders")
   } catch (err) {
     console.log(err)
-    res.redirect("/orders/create")
+    res.redirect("/cart/checkout")
   }
 })
 
@@ -45,7 +67,7 @@ router.get("/:id/", isSignedIn, async (req, res) => {
       .populate("shipping_company")
       .populate("items.itemRef")
 
-    res.render("orders/order-details", { order })
+    res.render("orders/order-details.ejs", { order })
   } catch (err) {
     console.log(err)
     res.redirect("/orders")
@@ -55,7 +77,7 @@ router.get("/:id/", isSignedIn, async (req, res) => {
 router.get("/:id/edit", isAdmin, async (req, res) => {
   try {
     const foundOrder = await Order.findById(req.params.id)
-    res.render("orders/edit-order", { order: foundOrder })
+    res.render("orders/edit-order.ejs", { order: foundOrder })
   } catch (err) {
     console.log(err)
     res.redirect(`/orders/${req.params.id}`)
