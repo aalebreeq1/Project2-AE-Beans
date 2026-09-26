@@ -4,7 +4,7 @@ const isAdmin = (req, res, next) => {
     return next()
   }
   req.session.errorMessage = "You must be an admin to access this page."
-  res.redirect("/homepage.ejs")
+  res.redirect("/homepage")
 };
 
 module.exports = isAdmin

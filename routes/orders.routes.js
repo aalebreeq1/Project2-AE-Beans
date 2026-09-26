@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
 const router = require("express").Router()
 const Order = require("../models/Order")
-const isSignedIn = require("../middlewares/auth")
-const isAdmin = require("../middlewares/admin")
+const isSignedIn = require("../middleware/is-signed-in")
+const isAdmin = require("../middleware/is-admin")
 
 router.get("/", isSignedIn, async (req, res) => {
   try {

@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const isAdmin = require("../middleware/is-admin")
-const Bean = require("../models/Bean")
+const Bean = require("../models/Beans")
 
 router.get("/", async (req, res) => {
   try {
