@@ -5,10 +5,11 @@ const isAdmin = require("../middleware/is-admin")
 
 router.get("/", async (req, res) => {
   try {
-    const shippingCompanies = await ShippingCompany.find({ is_deleted: false })
+    const shippingCompanies = await ShippingCompany.find({ isDeleted: false })
     res.render("shipping/all-shipping-companies.ejs", { shippingCompanies })
   } catch (err) {
     console.log(err)
+    res.redirect("/")
   }
 })
 
@@ -23,15 +24,16 @@ router.get("/create", isAdmin, (req, res) => {
 router.post("/", isAdmin, async (req, res) => {
   try {
     const { name, address, phone_number, img_url } = req.body
-    const newShippingCompany = await ShippingCompany.create({
+    await ShippingCompany.create({
       name,
       address,
       phone_number,
       img_url,
     })
-    res.redirect("/all-shipping-companies")
+    res.redirect("/shipping-companies") 
   } catch (err) {
     console.log(err)
+    res.redirect("/shipping-companies/create")
   }
 })
 
@@ -41,6 +43,7 @@ router.get("/:id", async (req, res) => {
     res.render("shipping/shipping-company-details.ejs", { shippingCompany })
   } catch (err) {
     console.log(err)
+    res.redirect("/shipping-companies")
   }
 })
 
@@ -50,6 +53,7 @@ router.get("/:id/edit", isAdmin, async (req, res) => {
     res.render("shipping/edit-shipping-company.ejs", { shippingCompany })
   } catch (err) {
     console.log(err)
+    res.redirect("/shipping-companies")
   }
 })
 
@@ -62,20 +66,22 @@ router.put("/:id/update", isAdmin, async (req, res) => {
       phone_number,
       img_url,
     })
-    res.redirect("/all-shipping-companies")
+    res.redirect("/shipping-companies")
   } catch (err) {
     console.log(err)
+    res.redirect(`/shipping-companies/${req.params.id}/edit`)
   }
 })
 
 router.delete("/:id/delete", isAdmin, async (req, res) => {
   try {
     await ShippingCompany.findByIdAndUpdate(req.params.id, {
-      is_deleted: true,
+      isDeleted: true,
     })
-    res.redirect("/all-shipping-companies")
+    res.redirect("/shipping-companies")
   } catch (err) {
     console.log(err)
+    res.redirect("/shipping-companies")
   }
 })
 
