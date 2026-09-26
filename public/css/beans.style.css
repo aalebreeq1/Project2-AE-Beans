@@ -185,3 +185,107 @@
 .btn-danger:hover {
   background-color: #fad2d0;
 }
+
+/* Form Card Layout */
+.form-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.form-card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 550px;
+  border: 1px solid #eae5e1;
+}
+
+.form-card h2 {
+  font-size: 1.8rem;
+  color: #2c221e;
+  margin-bottom: 6px;
+}
+
+.form-subtitle {
+  color: #6b5b53;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
+
+/* Form Groups */
+.bean-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #2c221e;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border: 1px solid #dcd6d0;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #faf8f5;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #c86d3e;
+  background-color: #ffffff;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Admin Actions Container */
+.admin-actions-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.admin-actions-container a {
+  text-decoration: none;
+}
+
+/* Specific styling for the action button */
+.admin-actions-container .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  padding: 12px 24px;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(200, 109, 62, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-actions-container .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(200, 109, 62, 0.3);
+}
