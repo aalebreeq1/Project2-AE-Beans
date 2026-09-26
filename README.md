@@ -173,6 +173,7 @@ Built using Node.js, Express, MongoDB, EJS, and CSS.
 | `views/beans/edit-bean.ejs`    | Pre-populated form using `bean` data.<br>POST action targeting `/beans/<%= bean._id %>/update?_method=PUT`.                                                                                                |
 
 ### Coffee Tools Views
+
 | File                           | Requirements                                                                                                         |
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | `views/tools/all-tools.ejs`    | Loop through `coffeeTools`.<br>Display image, name, category, and price.<br>Link to `/coffee-tools/<%= tool._id %>`. |
@@ -180,8 +181,8 @@ Built using Node.js, Express, MongoDB, EJS, and CSS.
 | `views/tools/create-tool.ejs`  | Form containing `name`, `category`, `price`, `quantity`, and `img_url`.                                              |
 | `views/tools/edit-tool.ejs`    | Pre-populated edit form containing `name`, `category`, `price`, `quantity`, and `img_url`.                           |
 
-
 ### Shipping Companies Views
+
 | File                                          | Requirements                                                                         |
 | --------------------------------------------- | ------------------------------------------------------------------------------------ |
 | `views/shipping/all-shipping-companies.ejs`   | List partner courier services.<br>Display logo/image, name, and address.             |
@@ -189,14 +190,13 @@ Built using Node.js, Express, MongoDB, EJS, and CSS.
 | `views/shipping/create-shipping-company.ejs`  | Form containing `name`, `address`, `phone_number`, and `img_url`.                    |
 | `views/shipping/edit-shipping-company.ejs`    | Pre-populated edit form containing `name`, `address`, `phone_number`, and `img_url`. |
 
-
 ### Orders Views
+
 | File                             | Requirements                                                                                                                               |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | `views/orders/all-orders.ejs`    | Loop through user `orders`.<br>Display order date, total price, selected shipping company, and ordered items with quantities.              |
 | `views/orders/checkout.ejs`      | Checkout form allowing users to review items, select a shipping company, enter `shipping_address`, and submit `POST` request to `/orders`. |
 | `views/orders/order-details.ejs` | Detailed receipt for a specific order.<br>Display populated item breakdowns and shipping status.                                           |
-
 
 ## Future Enhancements
 
