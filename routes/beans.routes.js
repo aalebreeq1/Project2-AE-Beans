@@ -46,7 +46,7 @@ router.post("/", isAdmin, async (req, res) => {
       img_url,
     });
 
-    res.redirect("/beans/" + newBean._id);
+    res.redirect("/beans/")
   } catch (err) {
     console.error(err);
     res.redirect("/beans/create");
