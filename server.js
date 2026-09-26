@@ -16,7 +16,10 @@ const isAdmin = require("./middleware/is-admin.js");
 // routes Imports
 const authController = require("./routes/auth.routes.js");
 const indexController = require("./routes/index.routes.js");
-const beanController = require("./routes/bean.routes.js");
+const beanController = require("./routes/beans.routes.js");
+const coffeeToolController = require("./routes/coffeetools.routes.js")
+const orderController = require("./routes/orders.routes.js")
+const shippingCompanyController = require("./routes/shippingcompany.routes.js")
 
 
 // Middleware
@@ -55,7 +58,11 @@ app.use(passUserToView)
 // Routes go here
 app.use('/auth',authController)
 app.use('/',indexController)
-app.use('/bean', beanController)
+app.use('/beans', beanController)
+app.use('/coffee-tools', coffeeToolController)
+app.use('/orders', orderController)
+app.use('/shipping-companies', shippingCompanyController)
+
 
 
 
