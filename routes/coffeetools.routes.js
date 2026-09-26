@@ -9,8 +9,10 @@ router.get("/", async (req, res) => {
     res.render("tools/all-tools.ejs", { coffeeTools })
   } catch (err) {
     console.error(err)
+    res.redirect("/")
   }
 })
+
 router.get("/:id", async (req, res) => {
   try {
     const coffeeTool = await CoffeeTool.findById(req.params.id)
@@ -26,6 +28,7 @@ router.get("/create", isAdmin, (req, res) => {
     res.render("tools/create-tool.ejs")
   } catch (err) {
     console.error(err)
+    res.redirect("/coffee-tools")
   }
 })
 
@@ -54,37 +57,35 @@ router.get("/:id/edit", isAdmin, async (req, res) => {
     res.render("tools/edit-tool.ejs", { coffeeTool: coffeeToolToEdit })
   } catch (err) {
     console.log(err)
+    res.redirect("/coffee-tools")
   }
 })
 
 router.put("/:id/update", isAdmin, async (req, res) => {
   try {
     const { name, category, price, quantity, img_url } = req.body
-    const coffeeToolToUpdate = await CoffeeTool.findByIdAndUpdate(
-      req.params.id,
-      {
-        name,
-        category,
-        price,
-        quantity,
-        img_url,
-      },
-    )
-    res.redirect("/coffee-tools")
+    await CoffeeTool.findByIdAndUpdate(req.params.id, {
+      name,
+      category,
+      price,
+      quantity,
+      img_url,
+    })
+    res.redirect("/coffee-tools/" + req.params.id)
   } catch (err) {
     console.log(err)
+    res.redirect("/coffee-tools/" + req.params.id + "/edit")
   }
 })
 
 router.delete("/:id/delete", isAdmin, async (req, res) => {
   try {
-    const deletedCoffeeTool = await CoffeeTool.findByIdAndUpdate(
-      req.params.id,
-      { isDeleted: true },
-    )
+    await CoffeeTool.findByIdAndUpdate(req.params.id, { isDeleted: true })
     res.redirect("/coffee-tools")
   } catch (err) {
     console.log(err)
+    res.redirect("/coffee-tools")
   }
 })
+
 module.exports = router
