@@ -3,29 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>AE Beans | Home</title>
+    <link rel="stylesheet" href="/css/homepage.style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <%- include('./partials/navbar') %>
-    <h1>Welcome to AE Beans</h1>
-    <h2>Specialty Coffee And equipment</h2>
-    <h3>Discover Our Selection</h3>
 
-    <a href="/beans" class="block group">
-      <div class="beans-div">
-        <div class="beans-image-container">
-          <img src="/images/Beans-img.avif" alt="Specialty Coffee Beans" />
-        </div>
-        <div class="beans-info">
-          <h4>Explore Our Beans Collection</h4>
-          <p>
-            Browse through our wide selection of specialty coffee beans and find
-            your perfect brew.
-          </p>
-        </div>
+    <header class="hero-section">
+      <h1>Welcome to AE Beans</h1>
+      <h2>Specialty Coffee And equipment</h2>
+      <p>Elevate your daily ritual with single-origin beans and professional-grade brewing tools.</p>
+    </header>
+
+    <main class="main-container">
+      <h3>Discover Our Selection</h3>
+
+      <div class="cards-grid">
+        <a href="/beans" class="card-link">
+          <div class="beans-div">
+            <div class="beans-image-container">
+              <img src="/images/Beans-img.avif" alt="Specialty Coffee Beans" />
+            </div>
+            <div class="beans-info">
+              <h4>Explore Our Beans Collection</h4>
+              <p>Browse through our wide selection of specialty coffee beans and find your perfect brew.</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="/coffee-tools" class="card-link">
+          <div class="tool-div">
+            <div class="tool-image-container">
+              <img src="/images/tools.jpeg" alt="Specialty Coffee Tools" />
+            </div>
+            <div class="tool-info">
+              <h4>Explore Our Coffee Tools Collection</h4>
+              <p>Browse through our wide selection of specialty coffee tools and find the perfect equipment for your brew.</p>
+            </div>
+          </div>
+        </a>
       </div>
-    </a>
 
-    <%= errorMessage %>
+      <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+        <div class="error-message">
+          <%= errorMessage %>
+        </div>
+      <% } %>
+    </main>
+
+    <%- include('./partials/footer') %>
   </body>
 </html>

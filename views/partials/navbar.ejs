@@ -1,17 +1,21 @@
-<nav>
-    <a href="/">Homepage</a>
-    <a href="/beans">Coffee Beans</a>
-    <a href="/coffee-tools">Coffee Tools</a>
-    <a href="/shipping-companies">Shipping Partners</a>
+<nav class="navbar">
+    <a href="/" class="nav-brand">AE Beans</a>
+    
+    <ul class="nav-links">
+        <li><a href="/">Homepage</a></li>
+        <li><a href="/beans">Coffee Beans</a></li>
+        <li><a href="/coffee-tools">Coffee Tools</a></li>
+        <li><a href="/shipping-companies">Shipping Partners</a></li>
 
-    <% if (user) { %>
-        <a href="/orders">My Orders</a>
-        <% if (isAdmin) { %>
-            <a href="/dashboard">Dashboard</a>
+        <% if (user) { %>
+            <li><a href="/orders">My Orders</a></li>
+            <% if (isAdmin) { %>
+                <li><a href="/dashboard">Dashboard</a></li>
+            <% } %>
+            <li><a href="/auth/sign-out">Logout</a></li>
+        <% } else { %>
+            <li><a href="/auth/sign-up">Sign Up</a></li>
+            <li><a href="/auth/sign-in">Login</a></li>
         <% } %>
-        <a href="/auth/sign-out">Logout</a>
-    <% } else { %>
-        <a href="/auth/sign-up">Sign Up</a>
-        <a href="/auth/sign-in">Login</a>
-    <% } %>
+    </ul>
 </nav>
