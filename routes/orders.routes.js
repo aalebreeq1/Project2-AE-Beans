@@ -13,7 +13,7 @@ router.get("/", isSignedIn, async (req, res) => {
       .populate("shipping_company")
       .populate("items.itemRef")
 
-    res.render("all-orders", { orders })
+    res.render("orders/all-orders", { orders })
   } catch (err) {
     console.log(err)
     res.redirect("/")
@@ -32,7 +32,7 @@ router.post("/", isSignedIn, async (req, res) => {
       shipping_company,
       shipping_address,
     })
-    res.redirect("/all-orders")
+    res.redirect("/orders")
   } catch (err) {
     console.log(err)
     res.redirect("/orders/create")
@@ -45,7 +45,7 @@ router.get("/:id/", isSignedIn, async (req, res) => {
       .populate("shipping_company")
       .populate("items.itemRef")
 
-    res.render("order-details", { order })
+    res.render("orders/order-details", { order })
   } catch (err) {
     console.log(err)
     res.redirect("/orders")
@@ -55,7 +55,7 @@ router.get("/:id/", isSignedIn, async (req, res) => {
 router.get("/:id/edit", isAdmin, async (req, res) => {
   try {
     const foundOrder = await Order.findById(req.params.id)
-    res.render("edit-order", { order: foundOrder })
+    res.render("orders/edit-order", { order: foundOrder })
   } catch (err) {
     console.log(err)
     res.redirect(`/orders/${req.params.id}`)
