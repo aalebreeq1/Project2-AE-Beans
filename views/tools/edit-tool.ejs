@@ -1,11 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Edit Coffee Tool <%= tool.name %> </title>
+    <title>AE Beans | Edit Coffee Tool</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
 </head>
+
 <body>
-    
+    <%- include('../partials/navbar') %>
+
+        <main class="main-container">
+            <div class="form-card-container">
+                <div class="form-card">
+                    <h2>Edit Coffee Tool</h2>
+                    <p class="form-subtitle">Update the specifications and inventory details</p>
+
+                    <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+                        <div class="error-message">
+                            <span>⚠️</span>
+                            <span><%= errorMessage %></span>
+                        </div>
+                    <% } %>
+
+                    <form action="/coffee-tools/<%= coffeeToolToEdit._id %>/update?_method=PUT" method="POST" class="bean-form">
+
+                        <div class="form-group">
+                            <label for="name">Tool Name</label>
+                            <input type="text" id="name" name="name" value="<%= coffeeToolToEdit.name %>" required
+                                placeholder="e.g. Fellow Ode Grinder" autocomplete="off" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" name="category" required>
+                                <option value="" disabled>Select a category</option>
+                                <option value="Espresso" <%= coffeeToolToEdit.category === 'Espresso' ? 'selected' : '' %>>Espresso</option>
+                                <option value="Filter" <%= coffeeToolToEdit.category === 'Filter' ? 'selected' : '' %>>Filter</option>
+                                <option value="Brewer" <%= coffeeToolToEdit.category === 'Brewer' ? 'selected' : '' %>>Brewer</option>
+                                <option value="Grinder" <%= coffeeToolToEdit.category === 'Grinder' ? 'selected' : '' %>>Grinder</option>
+                                <option value="Dripper" <%= coffeeToolToEdit.category === 'Dripper' ? 'selected' : '' %>>Dripper</option>
+                                <option value="Scale" <%= coffeeToolToEdit.category === 'Scale' ? 'selected' : '' %>>Scale</option>
+                                <option value="Kettle" <%= coffeeToolToEdit.category === 'Kettle' ? 'selected' : '' %>>Kettle</option>
+                                <option value="Accessory" <%= coffeeToolToEdit.category === 'Accessory' ? 'selected' : '' %>>Accessory</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" rows="3" required
+                                placeholder="Describe build quality, features, and specs..."><%= coffeeToolToEdit.description %></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price (BHD)</label>
+                            <input type="number" id="price" name="price" step="0.001" min="0" value="<%= coffeeToolToEdit.price %>" required
+                                placeholder="85.000" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quantity">Stock Quantity</label>
+                            <input type="number" id="quantity" name="quantity" min="0" value="<%= coffeeToolToEdit.quantity %>" required
+                                placeholder="15" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="img_url">Image URL</label>
+                            <input type="url" id="img_url" name="img_url" value="<%= coffeeToolToEdit.img_url %>" required
+                                placeholder="https://images.unsplash.com/..." />
+                        </div>
+
+                        <div class="form-actions" style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button type="submit" class="btn-primary">Update Tool</button>
+                            <a href="/coffee-tools" class="btn-secondary"
+                                style="text-align: center; text-decoration: none; padding: 10px 20px;">Cancel</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
 </body>
+
 </html>

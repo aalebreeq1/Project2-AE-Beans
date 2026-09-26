@@ -30,7 +30,6 @@
                 <div class="cards-grid">
                     <% allTools.forEach(tool => { %>
                         <div class="bean-card">
-                            <!-- Invisible full-card link overlay -->
                             <a href="/coffee-tools/<%= tool._id %>" class="card-overlay-link"
                                 aria-label="<%= tool.name %> details"></a>
 
@@ -61,7 +60,7 @@
                                         <span class="admin-label">Admin</span>
                                         <div class="admin-buttons">
                                             <a href="/coffee-tools/<%= tool._id %>/edit" class="btn-secondary">Edit</a>
-                                            <form action="/coffee-tools/<%= tool._id %>/delete" method="POST"
+                                            <form action="/coffee-tools/<%= tool._id %>/delete?_method=DELETE" method="POST"
                                                 style="display:inline;">
                                                 <button class="btn-danger" type="submit">Delete</button>
                                             </form>

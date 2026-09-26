@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%=coffeeTool.name %></title>
-  </head>
-  <body>
-    
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AE Beans | <%= coffeeTool.name %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <main class="main-container">
+        <div class="bean-details-container">
+            <div class="bean-details-card">
+                <div class="bean-details-image">
+                    <img src="<%= coffeeTool.img_url %>" alt="<%= coffeeTool.name %>" ">
+                </div>
+
+                <div class="bean-details-content">
+                    <div class="bean-header-row">
+                        <h2><%= coffeeTool.name %></h2>
+                        <% if (coffeeTool.category) { %>
+                            <span class="badge-score"><%= coffeeTool.category %></span>
+                        <% } %>
+                    </div>
+
+                    <div class="info-section">
+                        <h4>About This Tool</h4>
+                        <p class="description-text"><%= coffeeTool.description %></p>
+                    </div>
+
+                    <div class="bean-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Price</span>
+                            <span class="meta-value price-highlight">BHD <%= Number(coffeeTool.price).toFixed(3) %></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Category</span>
+                            <span class="meta-value"><%= coffeeTool.category %></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Stock</span>
+                            <span class="meta-value"><%= coffeeTool.quantity %> units available</span>
+                        </div>
+                    </div>
+
+                    <div class="bean-actions-row">
+                        <button class="btn-primary">Add to Cart</button>
+                        <a href="/coffee-tools" class="btn-secondary">Back to Catalog</a>
+                    </div>
+
+                    <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                        <div class="admin-toolbar show-admin-toolbar">
+                            <span class="admin-label">Admin Controls</span>
+                            <div class="admin-buttons">
+                                <a href="/coffee-tools/<%= coffeeTool._id %>/edit" class="btn-secondary">Edit Tool</a>
+                                <form action="/coffee-tools/<%= coffeeTool._id %>/delete?_method=DELETE" method="POST" style="display:inline;">
+                                    <button class="btn-danger" type="submit">Delete Tool</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
 </html>

@@ -11,6 +11,12 @@ const coffeeToolSchema = new mongoose.Schema(
       enum: ["Espresso", "Filter", "Brewer", "Grinder", "Dripper","Scale","Kettle","Accessory"], 
       trim: true,
     },
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    
     price: {
       type: Number,
       required: true,
