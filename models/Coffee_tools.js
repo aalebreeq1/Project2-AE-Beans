@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const coffeeToolSchema = new mongoose.Schema(
   {
     name: {
@@ -9,7 +8,7 @@ const coffeeToolSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ["Grinder", "Dripper", "Scale", "Kettle", "Accessory"], 
+      enum: ["Espresso", "Filter", "Brewer", "Grinder", "Dripper","Scale","Kettle","Accessory"], 
       trim: true,
     },
     price: {
