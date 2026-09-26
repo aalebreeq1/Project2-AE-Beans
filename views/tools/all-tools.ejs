@@ -1,11 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Tools</title>
+    <title>AE Beans | All Tools</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
 </head>
+
 <body>
-    
+    <%- include('../partials/navbar') %>
+
+        <main class="main-container">
+            <div class="page-header">
+                <h2>Barista Equipment & Tools</h2>
+                <p>Discover professional-grade gear to elevate your daily brew.</p>
+            </div>
+
+            <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                <div class="admin-actions-container">
+                    <a href="/coffee-tools/create">
+                        <button class="btn-primary">Add New Tool</button>
+                    </a>
+                </div>
+            <% } %>
+
+            <% if (allTools && allTools.length > 0) { %>
+                <div class="cards-grid">
+                    <% allTools.forEach(tool => { %>
+                        <div class="bean-card">
+                            <!-- Invisible full-card link overlay -->
+                            <a href="/coffee-tools/<%= tool._id %>" class="card-overlay-link"
+                                aria-label="<%= tool.name %> details"></a>
+
+                            <div class="bean-image-container">
+                                <img src="<%= tool.img_url %>" alt="<%= tool.name %>">
+                            </div>
+
+                            <div class="bean-info">
+                                <h3>
+                                    <%= tool.name %>
+                                </h3>
+                                <p class="bean-description">
+                                    <%= tool.description %>
+                                </p>
+                                <div class="bean-price-row">
+                                    <span class="price">BHD <%= Number(tool.price).toFixed(3) %></span>
+                                    <% if (typeof tool.isInCart !== 'undefined' && tool.isInCart) { %>
+                                        <span class="badge-cart">In Cart</span>
+                                    <% } %>
+                                </div>
+                            </div>
+
+                            <div class="bean-actions">
+                                <button class="btn-primary" type="button">Add to Cart</button>
+
+                                <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                                    <div class="admin-toolbar">
+                                        <span class="admin-label">Admin</span>
+                                        <div class="admin-buttons">
+                                            <a href="/coffee-tools/<%= tool._id %>/edit" class="btn-secondary">Edit</a>
+                                            <form action="/coffee-tools/<%= tool._id %>/delete" method="POST"
+                                                style="display:inline;">
+                                                <button class="btn-danger" type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <div class="empty-state">
+                    <p>No coffee tools available right now. Check back soon!</p>
+                </div>
+            <% } %>
+        </main>
+
+        <%- include('../partials/footer') %>
 </body>
+
 </html>

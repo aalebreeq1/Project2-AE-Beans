@@ -3,9 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= bean.name %> Details</title>
+    <title>AE Beans | <%= bean.name %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.style.css">
 </head>
 <body>
-    
+    <%- include('../partials/navbar') %>
+
+    <main class="main-container">
+        <div class="bean-details-container">
+            <div class="bean-details-card">
+                <div class="bean-details-image">
+                    <img src="<%= bean.img_url %>" alt="<%= bean.name %>" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80'">
+                </div>
+
+                <div class="bean-details-content">
+                    <div class="bean-header-row">
+                        <h2><%= bean.name %></h2>
+                        <% if (bean.grading_score) { %>
+                            <span class="badge-score">Q-Score: <%= bean.grading_score %></span>
+                        <% } %>
+                    </div>
+
+                    <p class="origin-tag">📍 <%= bean.country_of_origin %></p>
+
+                    <div class="info-section">
+                        <h4>Flavor Notes</h4>
+                        <p class="notes-text"><%= bean.notes || 'N/A' %></p>
+                    </div>
+
+                    <div class="info-section">
+                        <h4>About This Roast</h4>
+                        <p class="description-text"><%= bean.description %></p>
+                    </div>
+
+                    <div class="bean-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Price</span>
+                            <span class="meta-value price-highlight">BHD <%= Number(bean.price).toFixed(3) %></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Roast Date</span>
+                            <span class="meta-value"><%= bean.roasting_date ? new Date(bean.roasting_date).toLocaleDateString() : 'N/A' %></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Stock</span>
+                            <span class="meta-value"><%= bean.quantity %> bags available</span>
+                        </div>
+                    </div>
+
+                    <div class="bean-actions-row">
+                        <button class="btn-primary">Add to Cart</button>
+                        <a href="/beans" class="btn-secondary">Back to Catalog</a>
+                    </div>
+
+                    <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                        <div class="admin-toolbar show-admin-toolbar">
+                            <span class="admin-label">Admin Controls</span>
+                            <div class="admin-buttons">
+                                <a href="/beans/<%= bean._id %>/edit" class="btn-secondary">Edit Bean</a>
+                                <form action="/beans/<%= bean._id %>/delete" method="POST" style="display:inline;">
+                                    <button class="btn-danger" type="submit">Delete Bean</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
 </body>
 </html>

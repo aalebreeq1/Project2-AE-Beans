@@ -5,8 +5,8 @@ const isAdmin = require("../middleware/is-admin.js")
 
 router.get("/", async (req, res) => {
   try {
-    const coffeeTools = await CoffeeTool.find({ isDeleted: false })
-    res.render("tools/all-tools.ejs", { coffeeTools })
+    const allTools = await CoffeeTool.find({ isDeleted: false })
+    res.render("tools/all-tools.ejs", { allTools })
   } catch (err) {
     console.error(err)
     res.redirect("/")

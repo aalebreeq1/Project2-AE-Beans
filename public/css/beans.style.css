@@ -44,6 +44,7 @@
 }
 
 .bean-card {
+  position: relative;
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -57,6 +58,15 @@
 .bean-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-overlay-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 .bean-image-container {
@@ -77,12 +87,13 @@
   transform: scale(1.05);
 }
 
-/* Card Content */
 .bean-info {
   padding: 20px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
 }
 
 .bean-info h3 a {
@@ -126,12 +137,13 @@
   font-weight: 500;
 }
 
-/* Actions & Buttons */
 .bean-actions {
   padding: 0 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  position: relative;
+  z-index: 2;
 }
 
 .btn-primary {
@@ -203,7 +215,6 @@
   background-color: #fad2d0;
 }
 
-/* Form Card Layout */
 .form-card-container {
   display: flex;
   justify-content: center;
@@ -233,7 +244,6 @@
   margin-bottom: 25px;
 }
 
-/* Form Groups */
 .bean-form {
   display: flex;
   flex-direction: column;
@@ -274,7 +284,6 @@
   resize: vertical;
 }
 
-/* Admin Actions Container */
 .admin-actions-container {
   display: flex;
   justify-content: flex-end;
@@ -290,7 +299,6 @@
   text-decoration: none;
 }
 
-/* Specific styling for the action button */
 .admin-actions-container .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -305,4 +313,152 @@
 .admin-actions-container .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(200, 109, 62, 0.3);
+}
+
+/* Bean Details Layout */
+.bean-details-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.bean-details-card {
+  background: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+  max-width: 1000px;
+  width: 100%;
+  border: 1px solid #eae5e1;
+}
+
+@media (max-width: 768px) {
+  .bean-details-card {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
+
+.bean-details-image {
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f7f4f0;
+}
+
+.bean-details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bean-details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bean-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.bean-details-content h2 {
+  font-size: 2rem;
+  color: #2c221e;
+  margin: 0;
+}
+
+.badge-score {
+  background-color: #eef3fc;
+  color: #1a73e8;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.origin-tag {
+  color: #6b5b53;
+  font-weight: 500;
+  margin: -10px 0 0 0;
+}
+
+.info-section h4 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #8c7a70;
+  margin-bottom: 6px;
+}
+
+.notes-text {
+  color: #c86d3e;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.description-text {
+  color: #5c4e48;
+  line-height: 1.5;
+}
+
+.bean-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  background: #faf8f5;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #eee8e2;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-size: 0.75rem;
+  color: #8c7a70;
+  text-transform: uppercase;
+}
+
+.meta-value {
+  font-weight: 600;
+  color: #2c221e;
+  font-size: 0.95rem;
+}
+
+.price-highlight {
+  color: #c86d3e;
+  font-size: 1.1rem;
+}
+
+.bean-actions-row {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.bean-actions-row .btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 1px solid #dcd6d0;
+}
+
+.show-admin-toolbar {
+  margin-top: 15px;
+  border-top: 1px dashed #dcd6d0;
+  padding-top: 15px;
 }
