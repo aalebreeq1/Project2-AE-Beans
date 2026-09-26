@@ -5,7 +5,7 @@ const Bean = require("../models/Bean")
 router.get("/", async (req, res) => {
   try {
     const allBeans = await Bean.find({ isDeleted: false })
-    res.render("all-beans.ejs", { allBeans })
+    res.render("beans/all-beans.ejs", { allBeans })
   } catch (err) {
     console.error(err)
     res.redirect("/")
@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
 router.get("/create", isAdmin, (req, res) => {
   try {
-    res.render("create-bean.ejs")
+    res.render("beans/create-bean.ejs")
   } catch (err) {
     console.error(err)
   }
@@ -56,7 +56,7 @@ router.post("/", isAdmin, async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const bean = await Bean.findById(req.params.id)
-    res.render("bean-details.ejs", { bean })
+    res.render("beans/bean-details.ejs", { bean })
   } catch (err) {
     console.error(err)
     res.redirect("/beans")
@@ -66,7 +66,7 @@ router.get("/:id", async (req, res) => {
 router.get("/:id/edit", isAdmin, async (req, res) => {
   try {
     const beanToEdit = await Bean.findById(req.params.id)
-    res.render("edit-bean.ejs", { bean: beanToEdit })
+    res.render("beans/edit-bean.ejs", { bean: beanToEdit })
   } catch (err) {
     console.error(err)
     res.redirect("/beans")
