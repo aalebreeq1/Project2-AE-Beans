@@ -18,6 +18,7 @@ router.get("/create", isAdmin, (req, res) => {
     res.render("shipping/create-shipping-company.ejs")
   } catch (err) {
     console.log(err)
+    res.redirect("/shipping-companies")
   }
 })
 
@@ -30,7 +31,7 @@ router.post("/", isAdmin, async (req, res) => {
       phone_number,
       img_url,
     })
-    res.redirect("/shipping-companies") 
+    res.redirect("/shipping-companies")
   } catch (err) {
     console.log(err)
     res.redirect("/shipping-companies/create")
