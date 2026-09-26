@@ -3,9 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Beans</title>
+    <title>AE Beans | All Beans</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/beans.css">
 </head>
 <body>
-    
+    <%- include('../partials/navbar') %>
+
+    <main class="main-container">
+        <div class="page-header">
+            <h2>Our Specialty Coffee Collection</h2>
+            <p>Discover freshly roasted beans sourced from around the world.</p>
+        </div>
+
+        <% if (allBeans && allBeans.length > 0) { %>
+            <div class="cards-grid">
+                <% allBeans.forEach(bean => { %>
+                    <div class="bean-card">
+                        <div class="bean-image-container">
+                            <img src="<%= bean.imageUrl %>" alt="<%= bean.name %>" >
+                        </div>
+                        
+                        <div class="bean-info">
+                            <h3><a href="/beans/<%= bean.id %>"><%= bean.name %></a></h3>
+                            <p class="bean-description"><%= bean.description %></p>
+                            <div class="bean-price-row">
+                                <span class="price">$<%= Number(bean.price).toFixed(2) %></span>
+                                <% if (typeof bean.isInCart !== 'undefined' && bean.isInCart) { %>
+                                    <span class="badge-cart">In Cart</span>
+                                <% } %>
+                            </div>
+                        </div>
+
+                        <div class="bean-actions">
+                            <button class="btn-primary">Add to Cart</button>
+
+                            <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+                                <div class="admin-toolbar">
+                                    <span class="admin-label">Admin</span>
+                                    <div class="admin-buttons">
+                                        <a href="/beans/<%= bean.id %>/edit" class="btn-secondary">Edit</a>
+                                        <form action="/beans/<%= bean.id %>/delete" method="POST" style="display:inline;">
+                                            <button class="btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <div class="empty-state">
+                <p>No coffee beans available right now. Check back soon!</p>
+            </div>
+        <% } %>
+    </main>
+
+    <%- include('../partials/footer') %>
 </body>
 </html>
