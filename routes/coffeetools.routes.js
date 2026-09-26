@@ -76,7 +76,7 @@ router.post("/:id/update", isAdmin, async (req, res) => {
   }
 })
 
-router.post("/:id/delete", isAdmin, async (req, res) => {
+router.delete("/:id/delete", isAdmin, async (req, res) => {
   try {
     const deletedCoffeeTool = await CoffeeTool.findByIdAndUpdate(
       req.params.id,
