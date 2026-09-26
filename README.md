@@ -156,6 +156,48 @@ Safe product archiving using soft deletes (isDeleted).
 
 Built using Node.js, Express, MongoDB, EJS, and CSS.
 
+### Core & Main Views
+
+| File                  | Requirements                                                                                                                          |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `views/homepage.ejs`  | Welcome banner introducing **AE Beans** (specialty coffee and equipment).<br>Quick links/CTA buttons to `/beans` and `/coffee-tools`. |
+| `views/dashboard.ejs` | Admin-only overview panel.<br>Quick action buttons to `/beans/create`, `/coffee-tools/create`, and `/shipping-companies/create`.      |
+
+### Beans Views
+
+| File                           | Requirements                                                                                                                                                                                               |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `views/beans/all-beans.ejs`    | Loop through `allBeans`.<br>Display image (`img_url`), name, roasting date, grading score, and price.<br>Include **View Details** link to `/beans/<%= bean._id %>`.<br>Admin-only **Edit/Delete** options. |
+| `views/beans/bean-details.ejs` | Display full bean details: description, tasting notes, country of origin, price, and quantity available.<br>If logged in, provide **Add to Order / Checkout** interaction.                                 |
+| `views/beans/create-bean.ejs`  | Form with `POST` action to `/beans`.<br>Fields: `name`, `country_of_origin`, `notes`, `description`, `grading_score`, `price`, `roasting_date`, `quantity`, `img_url`.                                     |
+| `views/beans/edit-bean.ejs`    | Pre-populated form using `bean` data.<br>POST action targeting `/beans/<%= bean._id %>/update?_method=PUT`.                                                                                                |
+
+### Coffee Tools Views
+| File                           | Requirements                                                                                                         |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `views/tools/all-tools.ejs`    | Loop through `coffeeTools`.<br>Display image, name, category, and price.<br>Link to `/coffee-tools/<%= tool._id %>`. |
+| `views/tools/tool-details.ejs` | Display equipment details: category, price, stock quantity, and image.                                               |
+| `views/tools/create-tool.ejs`  | Form containing `name`, `category`, `price`, `quantity`, and `img_url`.                                              |
+| `views/tools/edit-tool.ejs`    | Pre-populated edit form containing `name`, `category`, `price`, `quantity`, and `img_url`.                           |
+
+
+### Shipping Companies Views
+| File                                          | Requirements                                                                         |
+| --------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `views/shipping/all-shipping-companies.ejs`   | List partner courier services.<br>Display logo/image, name, and address.             |
+| `views/shipping/shipping-company-details.ejs` | Display contact phone number, address, and associated information.                   |
+| `views/shipping/create-shipping-company.ejs`  | Form containing `name`, `address`, `phone_number`, and `img_url`.                    |
+| `views/shipping/edit-shipping-company.ejs`    | Pre-populated edit form containing `name`, `address`, `phone_number`, and `img_url`. |
+
+
+### Orders Views
+| File                             | Requirements                                                                                                                               |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `views/orders/all-orders.ejs`    | Loop through user `orders`.<br>Display order date, total price, selected shipping company, and ordered items with quantities.              |
+| `views/orders/checkout.ejs`      | Checkout form allowing users to review items, select a shipping company, enter `shipping_address`, and submit `POST` request to `/orders`. |
+| `views/orders/order-details.ejs` | Detailed receipt for a specific order.<br>Display populated item breakdowns and shipping status.                                           |
+
+
 ## Future Enhancements
 
 ## Credits
