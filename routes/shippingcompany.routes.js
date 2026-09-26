@@ -53,7 +53,7 @@ router.get("/:id/edit", isAdmin, async (req, res) => {
   }
 })
 
-router.post("/:id/update", isAdmin, async (req, res) => {
+router.PUT("/:id/update", isAdmin, async (req, res) => {
   try {
     const { name, address, phone_number, img_url } = req.body
     await ShippingCompany.findByIdAndUpdate(req.params.id, {
