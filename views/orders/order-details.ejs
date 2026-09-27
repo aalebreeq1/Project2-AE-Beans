@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,58 +9,74 @@
     <link rel="stylesheet" href="/css/beans.style.css">
     <link rel="stylesheet" href="/css/dashboard.style.css">
 </head>
+
 <body>
-    <%- include('../partials/navbar') %>
-
-    <main class="main-container">
-        <div class="dashboard-header">
-            <h1>Order #<%= order._id.toString().slice(-6).toUpperCase() %></h1>
-            <p>Placed on <%= new Date(order.order_date).toLocaleDateString() %></p>
-        </div>
-
-        <div class="dashboard-section">
-            <h2>Shipping Information</h2>
-            <p style="margin-bottom: 8px;"><strong>Partner:</strong> <%= order.shipping_company ? order.shipping_company.name : 'N/A' %></p>
-            <p style="margin-bottom: 8px;"><strong>Address:</strong> <%= order.shipping_address %></p>
-        </div>
-
-        <div class="dashboard-section">
-            <h2>Order Items</h2>
-            <div class="dashboard-table-wrapper">
-                <table class="dashboard-table">
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Type</th>
-                            <th>Quantity</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% order.items.forEach(item => { %>
-                            <% if (item.itemRef) { %>
-                                <tr>
-                                    <td><%= item.itemRef.name %></td>
-                                    <td><%= item.itemType %></td>
-                                    <td><%= item.quantity %></td>
-                                    <td>BHD <%= Number(item.itemRef.price * item.quantity).toFixed(3) %></td>
-                                </tr>
-                            <% } %>
-                        <% }) %>
-                    </tbody>
-                </table>
+        <main class="main-container">
+            <div class="dashboard-header">
+                <h1>Order #<%= order._id.toString().slice(-6).toUpperCase() %>
+                </h1>
+                <p>Placed on <%= new Date(order.order_date).toLocaleDateString() %>
+                </p>
             </div>
 
-            <div style="margin-top: 20px; text-align: right;">
-                <h3>Total Price: BHD <%= Number(order.total_price).toFixed(3) %></h3>
+            <div class="dashboard-section">
+                <h2>Shipping Information</h2>
+                <p style="margin-bottom: 8px;"><strong>Partner:</strong>
+                    <%= order.shipping_company ? order.shipping_company.name : 'N/A' %>
+                </p>
+                <p style="margin-bottom: 8px;"><strong>Address:</strong>
+                    <%= order.shipping_address %>
+                </p>
             </div>
-        </div>
 
-        <div style="margin-top: 20px;">
-            <a href="/orders" class="btn-secondary" style="text-decoration: none;">Back to Orders</a>
-        </div>
-    </main>
+            <div class="dashboard-section">
+                <h2>Order Items</h2>
+                <div class="dashboard-table-wrapper">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Type</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% order.items.forEach(item=> { %>
+                                <% if (item.itemRef) { %>
+                                    <tr>
+                                        <td>
+                                            <%= item.itemRef.name %>
+                                        </td>
+                                        <td>
+                                            <%= item.itemType %>
+                                        </td>
+                                        <td>
+                                            <%= item.quantity %>
+                                        </td>
+                                        <td>BHD <%= Number(item.itemRef.price * item.quantity).toFixed(3) %>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                        <% }) %>
+                        </tbody>
+                    </table>
+                </div>
 
-    <%- include('../partials/footer') %>
+                <div style="margin-top: 20px; text-align: right;">
+                    <h3>Total Price: BHD <%= Number(order.total_price).toFixed(3) %>
+                    </h3>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <a href="/orders" class="btn-secondary" style="text-decoration: none;">Back to Orders</a>
+                <button class="btn-secondary" style="text-decoration: none;" onclick="window.print()">Download PDF</button>
+
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
 </body>
+
 </html>

@@ -81,7 +81,7 @@ router.get("/:id/edit", isAdmin, async (req, res) => {
   }
 });
 
-router.put("/:id/update", isAdmin, upload.single("image"),  async (req, res) => {
+router.put("/:id/update", isAdmin, upload.single("image"), async (req, res) => {
   try {
     const { name, category, description, price, quantity } = req.body;
     const img_url = req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png"
@@ -110,5 +110,30 @@ router.delete("/:id/delete", isAdmin, async (req, res) => {
     res.redirect("/coffee-tools");
   }
 });
+
+//     category: {
+//       type: String,
+//       required: true,
+//       enum: ["Filter", "Brewer", "Grinder", "Dripper","Scale","Kettle","Accessory"], 
+//       trim: true,
+//     },
+
+router.get("/category/Espresso", async (req, res) =>{
+  try{
+    const espressoTools = await CoffeeTool.find({ category: "Espresso"})
+    res.render("tools/category-tools.ejs", { tools: espressoTools})
+  }
+  catch(err){
+    console.log(err)
+  }
+})
+
+// router.get("/category/filter", async (req,res) =>{
+//   try{
+
+//   }
+//   catch(err )
+// })
+
 
 module.exports = router;
