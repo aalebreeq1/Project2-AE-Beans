@@ -3,11 +3,12 @@ const router = require("express").Router();
 const CoffeeTool = require("../models/Coffee_tools.js");
 const Cart = require("../models/Cart");
 const isAdmin = require("../middleware/is-admin.js");
+const upload = require("../middleware/upload");
 
 router.get("/", async (req, res) => {
   try {
     const allTools = await CoffeeTool.find({ isDeleted: false });
-    
+
     let cartItemIds = [];
     if (req.session.user) {
       const cart = await Cart.findOne({ owner: req.session.user._id });
@@ -48,9 +49,11 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", isAdmin, async (req, res) => {
+router.post("/", isAdmin, upload.single("image"), async (req, res) => {
   try {
-    const { name, category, description, price, quantity, img_url } = req.body;
+    const { name, category, description, price, quantity } = req.body;
+    const img_url = req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png"
+
 
     await CoffeeTool.create({
       name,
@@ -78,9 +81,11 @@ router.get("/:id/edit", isAdmin, async (req, res) => {
   }
 });
 
-router.put("/:id/update", isAdmin, async (req, res) => {
+router.put("/:id/update", isAdmin, upload.single("image"),  async (req, res) => {
   try {
-    const { name, category, description, price, quantity, img_url } = req.body;
+    const { name, category, description, price, quantity } = req.body;
+    const img_url = req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png"
+
     await CoffeeTool.findByIdAndUpdate(req.params.id, {
       name,
       category,

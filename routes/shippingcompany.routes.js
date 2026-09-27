@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const router = require("express").Router()
 const ShippingCompany = require("../models/Shipping_company")
 const isAdmin = require("../middleware/is-admin")
+const upload = require("../middleware/upload")
 
 router.get("/", async (req, res) => {
   try {
@@ -22,9 +23,11 @@ router.get("/create", isAdmin, (req, res) => {
   }
 })
 
-router.post("/", isAdmin, async (req, res) => {
+router.post("/", isAdmin, upload.single("image"), async (req, res) => {
   try {
-    const { name, address, phone_number, img_url } = req.body
+    const { name, address, phone_number } = req.body
+    const img_url = req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png"
+
     await ShippingCompany.create({
       name,
       address,
@@ -58,9 +61,10 @@ router.get("/:id/edit", isAdmin, async (req, res) => {
   }
 })
 
-router.put("/:id/update", isAdmin, async (req, res) => {
+router.put("/:id/update", isAdmin, upload.single("image"), async (req, res) => {
   try {
-    const { name, address, phone_number, img_url } = req.body
+    const { name, address, phone_number } = req.body
+    const img_url = req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png"
     await ShippingCompany.findByIdAndUpdate(req.params.id, {
       name,
       address,

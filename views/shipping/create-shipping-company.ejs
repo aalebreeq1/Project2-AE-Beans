@@ -20,12 +20,12 @@
 
                 <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
                     <div class="error-message">
-                        <span>⚠️</span>
+                        
                         <span><%= errorMessage %></span>
                     </div>
                 <% } %>
 
-                <form action="/shipping-companies" method="POST" class="bean-form">
+                <form action="/shipping-companies" method="POST" class="bean-form" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="name">Company Name</label>

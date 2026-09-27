@@ -18,12 +18,11 @@
 
                 <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
                     <div class="error-message">
-                        <span>⚠️</span>
                         <span><%= errorMessage %></span>
                     </div>
                 <% } %>
 
-                <form action="/beans" method="POST" class="bean-form">
+                <form action="/beans" method="POST" class="bean-form" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Bean Name</label>
                         <input type="text" id="name" name="name" required placeholder="e.g. Ethiopian Yirgacheffe" autocomplete="off" />
@@ -65,8 +64,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="img_url">Image URL</label>
-                        <input type="url" id="img_url" name="img_url" required placeholder="https://images.unsplash.com/..." />
+                        <label for="image">Upload Bean Image</label>
+                        <input type="file" id="image" name="image" required accept="image/*" />
                     </div>
 
                     <button type="submit" class="btn-primary">Publish Bean</button>

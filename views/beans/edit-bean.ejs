@@ -78,9 +78,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="img_url">Image URL</label>
-                                    <input type="url" id="img_url" name="img_url" value="<%= bean.img_url %>" required
-                                        placeholder="https://images.unsplash.com/..." />
+                                    <label for="image">Upload Bean Image</label>
+                                    <input type="file" id="image" name="image" required accept="image/*"
+                                        value="<%= bean.img_url%>" />
                                 </div>
 
                                 <div class="form-actions">

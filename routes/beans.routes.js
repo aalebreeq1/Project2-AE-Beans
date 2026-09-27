@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const isAdmin = require("../middleware/is-admin");
+const upload = require("../middleware/upload");
 const Bean = require("../models/Beans");
 const Cart = require("../models/Cart");
 
 router.get("/", async (req, res) => {
   try {
     const allBeans = await Bean.find({ isDeleted: false });
-    
+
     let cartItemIds = [];
     if (req.session.user) {
       const cart = await Cart.findOne({ owner: req.session.user._id });
@@ -36,7 +37,7 @@ router.get("/create", isAdmin, (req, res) => {
   }
 });
 
-router.post("/", isAdmin, async (req, res) => {
+router.post("/", isAdmin, upload.single("image"), async (req, res) => {
   try {
     const {
       name,
@@ -47,9 +48,9 @@ router.post("/", isAdmin, async (req, res) => {
       price,
       roasting_date,
       quantity,
-      img_url,
     } = req.body;
 
+    const img_url = req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png"
     await Bean.create({
       name,
       country_of_origin,
@@ -89,7 +90,7 @@ router.get("/:id/edit", isAdmin, async (req, res) => {
   }
 });
 
-router.put("/:id/update", isAdmin, async (req, res) => {
+router.put("/:id/update", isAdmin, upload.single("image"), async (req, res) => {
   try {
     const {
       name,
@@ -100,9 +101,9 @@ router.put("/:id/update", isAdmin, async (req, res) => {
       price,
       roasting_date,
       quantity,
-      img_url,
-    } = req.body;
 
+    } = req.body;
+    const img_url = req.file ? `/uploads/${req.file.filename}` : "/uploads/default.png"
     await Bean.findByIdAndUpdate(req.params.id, {
       name,
       country_of_origin,
