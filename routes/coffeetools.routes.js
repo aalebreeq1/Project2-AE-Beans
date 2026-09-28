@@ -141,16 +141,16 @@ router.get("/category/Grinder", async (req, res) =>{
   }
 })
 
-// router.get("/category/filter", async (req,res) =>{
-//   try{
-//     const filterTools = await CoffeeTool.find ({category: "Filter"})
-//     res.render("tools/all-tools.ejs", { tools: filterTools})
+router.get("/category/filter", async (req,res) =>{
+  try{
+    const filterTools = await CoffeeTool.find ({category: "Filter"})
+    res.render("tools/all-tools.ejs", { tools: filterTools})
     
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-// })
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 
 // router.get("/category/Dripper", async (req,res) =>{
 //   try{
