@@ -175,16 +175,16 @@ router.get("/category/Scale", async (req,res) =>{
   }
 })
 
-// router.get("/category/Kettle", async (req,res) =>{
-//   try{
-//     const KettleTools = await CoffeeTool.find ({category: "Kettle"})
-//     res.render("tools/all-tools.ejs", { tools: KettleTools})
+router.get("/category/Kettle", async (req,res) =>{
+  try{
+    const KettleTools = await CoffeeTool.find ({category: "Kettle"})
+    res.render("tools/all-tools.ejs", { tools: KettleTools})
     
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-// })
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 
 // router.get("/category/Accessory", async (req,res) =>{
 //   try{
