@@ -152,16 +152,16 @@ router.get("/category/filter", async (req,res) =>{
   }
 })
 
-// router.get("/category/Dripper", async (req,res) =>{
-//   try{
-//     const DripperTools = await CoffeeTool.find ({category: "Dripper"})
-//     res.render("tools/all-tools.ejs", { tools: DripperTools})
+router.get("/category/Dripper", async (req,res) =>{
+  try{
+    const DripperTools = await CoffeeTool.find ({category: "Dripper"})
+    res.render("tools/all-tools.ejs", { tools: DripperTools})
     
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-// })
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 
 
 // router.get("/category/Scale", async (req,res) =>{
