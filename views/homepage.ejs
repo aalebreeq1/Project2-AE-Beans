@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AE Beans | Home</title>
-    <link rel="stylesheet" href="/css/homepage.style.css" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <%- include('./partials/navbar') %>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AE Beans | Home</title>
+  <link rel="stylesheet" href="/css/homepage.style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <%- include('./partials/navbar') %>
 
     <header class="hero-section">
-      <h1>Welcome to AE Beans</h1>
-      <h2>Specialty Coffee And equipment</h2>
-      <p>Elevate your daily ritual with single-origin beans and professional-grade brewing tools.</p>
+      <video autoplay muted loop playsinline  class="hero-video">
+        <source src="video/videoplayback.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-content">
+        <h1>Welcome to AE Beans</h1>
+        <h2>Specialty Coffee And equipment</h2>
+        <p>Elevate your daily ritual with single-origin beans and professional-grade brewing tools.</p>
+      </div>
     </header>
 
     <main class="main-container">
@@ -40,19 +47,21 @@
             </div>
             <div class="tool-info">
               <h4>Explore Our Coffee Tools Collection</h4>
-              <p>Browse through our wide selection of specialty coffee tools and find the perfect equipment for your brew.</p>
+              <p>Browse through our wide selection of specialty coffee tools and find the perfect equipment for your
+                brew.</p>
             </div>
           </div>
         </a>
       </div>
 
-      <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+      <% if (typeof errorMessage !=='undefined' && errorMessage) { %>
         <div class="error-message">
           <%= errorMessage %>
         </div>
-      <% } %>
+        <% } %>
     </main>
 
     <%- include('./partials/footer') %>
-  </body>
+</body>
+
 </html>
