@@ -1,22 +1,22 @@
-<nav class="navbar">
-    <a href="/" class="nav-brand">AE Beans</a>
+<nav class="bg-amber-900 text-white px-6 py-4 flex justify-between items-center shadow-md">
+    <a href="/" class="text-xl font-bold tracking-wide text-amber-100 hover:text-white">AE Beans</a>
     
-    <ul class="nav-links">
-        <li><a href="/">Homepage</a></li>
-        <li><a href="/beans">Coffee Beans</a></li>
-        <li><a href="/coffee-tools">Coffee Tools</a></li>
-        <li><a href="/shipping-companies">Shipping Partners</a></li>
+    <ul class="flex items-center space-x-6 text-sm font-medium">
+        <li><a href="/" class="hover:text-amber-200 transition">Homepage</a></li>
+        <li><a href="/beans" class="hover:text-amber-200 transition">Coffee Beans</a></li>
+        <li><a href="/coffee-tools" class="hover:text-amber-200 transition">Coffee Tools</a></li>
+        <li><a href="/shipping-companies" class="hover:text-amber-200 transition">Shipping Partners</a></li>
 
         <% if (user) { %>
-            <li><a href="/cart">Cart</a></li>
-            <li><a href="/orders">My Orders</a></li>
+            <li><a href="/cart" class="hover:text-amber-200 transition">Cart</a></li>
+            <li><a href="/orders" class="hover:text-amber-200 transition">My Orders</a></li>
             <% if (isAdmin) { %>
-                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/dashboard" class="bg-amber-800 px-3 py-1.5 rounded hover:bg-amber-700 transition">Dashboard</a></li>
             <% } %>
-            <li><a href="/auth/sign-out">Logout</a></li>
+            <li><a href="/auth/sign-out" class="bg-red-700 px-3 py-1.5 rounded hover:bg-red-600 transition">Logout</a></li>
         <% } else { %>
-            <li><a href="/auth/sign-up">Sign Up</a></li>
-            <li><a href="/auth/sign-in">Login</a></li>
+            <li><a href="/auth/sign-up" class="hover:text-amber-200 transition">Sign Up</a></li>
+            <li><a href="/auth/sign-in" class="bg-amber-700 px-3.5 py-1.5 rounded hover:bg-amber-600 transition">Login</a></li>
         <% } %>
     </ul>
 </nav>
