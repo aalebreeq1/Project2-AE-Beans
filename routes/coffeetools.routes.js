@@ -164,16 +164,16 @@ router.get("/category/Dripper", async (req,res) =>{
 })
 
 
-// router.get("/category/Scale", async (req,res) =>{
-//   try{
-//     const ScaleTools = await CoffeeTool.find ({category: "Scale"})
-//     res.render("tools/all-tools.ejs", { tools: ScaleTools})
+router.get("/category/Scale", async (req,res) =>{
+  try{
+    const ScaleTools = await CoffeeTool.find ({category: "Scale"})
+    res.render("tools/all-tools.ejs", { tools: ScaleTools})
     
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-// })
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 
 // router.get("/category/Kettle", async (req,res) =>{
 //   try{
