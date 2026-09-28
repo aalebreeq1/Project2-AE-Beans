@@ -186,15 +186,15 @@ router.get("/category/Kettle", async (req,res) =>{
   }
 })
 
-// router.get("/category/Accessory", async (req,res) =>{
-//   try{
-//     const AccessoryTools = await CoffeeTool.find ({category: "Accessory"})
-//     res.render("tools/all-tools.ejs", { tools: AccessoryTools})
+router.get("/category/Accessory", async (req,res) =>{
+  try{
+    const AccessoryTools = await CoffeeTool.find ({category: "Accessory"})
+    res.render("tools/all-tools.ejs", { tools: AccessoryTools})
     
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-// })
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 
 module.exports = router;
