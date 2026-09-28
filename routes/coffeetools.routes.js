@@ -113,86 +113,86 @@ router.delete("/:id/delete", isAdmin, async (req, res) => {
 
 
 
-router.get("/category/Espresso", async (req, res) =>{
-  try{
-    const espressoTools = await CoffeeTool.find({ category: "Espresso"})
-    res.render("tools/all-tools.ejs", { tools: espressoTools})
+router.get("/category/Espresso", async (req, res) => {
+  try {
+    const espressoTools = await CoffeeTool.find({ category: "Espresso" })
+    res.render("tools/all-tools.ejs", { allTools: espressoTools })
   }
-  catch(err){
+  catch (err) {
     console.log(err)
   }
 })
-router.get("/category/Brewer", async (req, res) =>{
-  try{
-    const BrewerTools = await CoffeeTool.find({ category: "Brewer"})
-    res.render("tools/all-tools.ejs", { tools: BrewerTools})
+router.get("/category/Brewer", async (req, res) => {
+  try {
+    const BrewerTools = await CoffeeTool.find({ category: "Brewer" })
+    res.render("tools/all-tools.ejs", { allTools: BrewerTools })
   }
-  catch(err){
+  catch (err) {
     console.log(err)
   }
 })
-router.get("/category/Grinder", async (req, res) =>{
-  try{
-    const GrinderTools = await CoffeeTool.find({ category: "Grinder"})
-    res.render("tools/all-tools.ejs", { tools: GrinderTools})
+router.get("/category/Grinder", async (req, res) => {
+  try {
+    const GrinderTools = await CoffeeTool.find({ category: "Grinder" })
+    res.render("tools/all-tools.ejs", { allTools: GrinderTools })
   }
-  catch(err){
-    console.log(err)
-  }
-})
-
-router.get("/category/filter", async (req,res) =>{
-  try{
-    const filterTools = await CoffeeTool.find ({category: "Filter"})
-    res.render("tools/all-tools.ejs", { tools: filterTools})
-    
-  }
-  catch(err){
+  catch (err) {
     console.log(err)
   }
 })
 
-router.get("/category/Dripper", async (req,res) =>{
-  try{
-    const DripperTools = await CoffeeTool.find ({category: "Dripper"})
-    res.render("tools/all-tools.ejs", { tools: DripperTools})
-    
+router.get("/category/filter", async (req, res) => {
+  try {
+    const filterTools = await CoffeeTool.find({ category: "Filter" })
+    res.render("tools/all-tools.ejs", { allTools: filterTools })
+
   }
-  catch(err){
+  catch (err) {
+    console.log(err)
+  }
+})
+
+router.get("/category/Dripper", async (req, res) => {
+  try {
+    const DripperTools = await CoffeeTool.find({ category: "Dripper" })
+    res.render("tools/all-tools.ejs", { allTools: DripperTools })
+
+  }
+  catch (err) {
     console.log(err)
   }
 })
 
 
-router.get("/category/Scale", async (req,res) =>{
-  try{
-    const ScaleTools = await CoffeeTool.find ({category: "Scale"})
-    res.render("tools/all-tools.ejs", { tools: ScaleTools})
-    
+router.get("/category/Scale", async (req, res) => {
+  try {
+    const ScaleTools = await CoffeeTool.find({ category: "Scale" })
+    res.render("tools/all-tools.ejs", { allTools: ScaleTools })
+
   }
-  catch(err){
+  catch (err) {
     console.log(err)
   }
 })
 
-router.get("/category/Kettle", async (req,res) =>{
-  try{
-    const KettleTools = await CoffeeTool.find ({category: "Kettle"})
-    res.render("tools/all-tools.ejs", { tools: KettleTools})
-    
+router.get("/category/Kettle", async (req, res) => {
+  try {
+    const KettleTools = await CoffeeTool.find({ category: "Kettle" })
+    res.render("tools/all-tools.ejs", { allTools: KettleTools })
+
   }
-  catch(err){
+  catch (err) {
     console.log(err)
   }
 })
 
-router.get("/category/Accessory", async (req,res) =>{
-  try{
-    const AccessoryTools = await CoffeeTool.find ({category: "Accessory"})
-    res.render("tools/all-tools.ejs", { tools: AccessoryTools})
-    
+router.get("/category/Accessory", async (req, res) => {
+  try {
+    const AccessoryTools = await CoffeeTool.find({ category: "Accessory" })
+    res.render("tools/all-tools.ejs", { allTools: AccessoryTools })
+
   }
-  catch(err){
+  catch (err) {
     console.log(err)
   }
 })
