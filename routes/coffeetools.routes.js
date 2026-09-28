@@ -131,15 +131,15 @@ router.get("/category/Brewer", async (req, res) =>{
     console.log(err)
   }
 })
-// router.get("/category/Grinder", async (req, res) =>{
-//   try{
-//     const GrinderTools = await CoffeeTool.find({ category: "Grinder"})
-//     res.render("tools/all-tools.ejs", { tools: GrinderTools})
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-// })
+router.get("/category/Grinder", async (req, res) =>{
+  try{
+    const GrinderTools = await CoffeeTool.find({ category: "Grinder"})
+    res.render("tools/all-tools.ejs", { tools: GrinderTools})
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 
 // router.get("/category/filter", async (req,res) =>{
 //   try{
