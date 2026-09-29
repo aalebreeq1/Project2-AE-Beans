@@ -24,7 +24,7 @@ A specialized e-commerce platform that bridges specialty coffee roasters/supplie
 ### Orders Page
 ![Orders](readme-img/orders.png)
 ### Admin Dashboard
-![alt text](readme-img/Dashboard.png)
+![Dashboard](readme-img/Dashboard.png)
 
 
 ## Technologies Used
