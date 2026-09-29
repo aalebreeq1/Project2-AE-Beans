@@ -20,7 +20,7 @@ A specialized e-commerce platform that bridges specialty coffee roasters/supplie
 ### Shipping Partner Page
 ![shipping](readme-img/shipping-partne.png)
 ### Cart Page
-![alt text](readme-img/Cart.png)
+![Cart](readme-img/Cart.png)
 ### Orders Page
 ![alt text](readme-img/orders.png)
 ### Admin Dashboard
