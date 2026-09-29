@@ -115,48 +115,24 @@ http://localhost:3000
 ## Routes
 
 ### Beans Model Routes
-
-| Method | Route               | Description                                                  |
-| ------ | ------------------- | ------------------------------------------------------------ |
-| GET    | `/beans`            | View the catalog list of active coffee beans.                |
-| GET    | `/beans/create`     | View the form to add a new coffee bean.                      |
-| POST   | `/beans`            | Submit the new bean form data to save it.                    |
-| GET    | `/beans/:id/edit`   | View the update form pre-filled with a specific bean's data. |
-| POST   | `/beans/:id/update` | Submit the updated bean data.                                |
-| POST   | `/beans/:id/delete` | Trigger the soft delete (isDeleted: true) for a bean.        |
+| Method | Route               | Description                                                                                      |
+| ------ | ------------------- | ------------------------------------------------------------------------------------------------ |
+| GET    | `/beans`            | View the catalog list of active coffee beans, with a flag showing which are already in the cart. |
+| GET    | `/beans/create`     | View the form to add a new coffee bean (admin only).                                             |
+| POST   | `/beans`            | Submit the new bean form data (with image upload) to save it (admin only).                       |
+| GET    | `/beans/:id`        | View the details page of a specific bean.                                                        |
+| GET    | `/beans/:id/edit`   | View the update form pre-filled with a specific bean's data (admin only).                        |
+| PUT    | `/beans/:id/update` | Submit the updated bean data, including an optional new image (admin only).                      |
+| DELETE | `/beans/:id/delete` | Trigger the soft delete (`isDeleted: true`) for a bean (admin only).                             |
 
 ### Coffee Tools Routes
 
-| Method | Route                      | Description                                      |
-| ------ | -------------------------- | ------------------------------------------------ |
-| GET    | `/coffee-tools`            | View the list of active coffee gear and tools.   |
-| GET    | `/coffee-tools/create`     | View the form to add a new coffee tool.          |
-| POST   | `/coffee-tools`            | Submit the new coffee tool form data to save it. |
-| GET    | `/coffee-tools/:id/edit`   | View the update form for a specific tool.        |
-| POST   | `/coffee-tools/:id/update` | Submit the updated coffee tool data.             |
-| POST   | `/coffee-tools/:id/delete` | Trigger the soft delete for a coffee tool.       |
 
 ### Shippign Company Routes
 
-| Method | Route                            | Description                                       |
-| ------ | -------------------------------- | ------------------------------------------------- |
-| GET    | `/shipping-companies`            | View the list of logistics and shipping partners. |
-| GET    | `/shipping-companies/create`     | View the form to add a new shipping company.      |
-| POST   | `/shipping-companies`            | Submit the new shipping company form data.        |
-| GET    | `/shipping-companies/:id/edit`   | View the form to update a shipping company.       |
-| POST   | `/shipping-companies/:id/update` | Submit the updated shipping company data.         |
-| POST   | `/shipping-companies/:id/delete` | Trigger the soft delete for a shipping company.   |
 
 ### Orders Routes
 
-| Method | Route                | Description                                                                            |
-| ------ | -------------------- | -------------------------------------------------------------------------------------- |
-| GET    | `/orders`            | View the list of orders.                                                               |
-| GET    | `/orders/create`     | View the checkout/order placement form, including item and shipping company selection. |
-| POST   | `/orders`            | Submit the final order form to create the order.                                       |
-| GET    | `/orders/:id/edit`   | View the form to update an order's status or shipping details.                         |
-| POST   | `/orders/:id/update` | Submit the updated order status/details.                                               |
-| POST   | `/orders/:id/delete` | Trigger the soft delete/cancellation of an order.                                      |
 
 ## Features
 
