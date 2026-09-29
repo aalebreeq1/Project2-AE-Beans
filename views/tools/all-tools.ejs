@@ -22,13 +22,14 @@
             <% if (typeof isAdmin !=='undefined' && isAdmin) { %>
                 <div class="admin-actions-container">
                     <a href="/coffee-tools/create">
-                        <button class="btn-primary">Add New Tool</button>
+                        <button class="btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16 12.75H12.75V16C12.75 16.41 12.41 16.75 12 16.75C11.59 16.75 11.25 16.41 11.25 16V12.75H8C7.59 12.75 7.25 12.41 7.25 12C7.25 11.59 7.59 11.25 8 11.25H11.25V8C11.25 7.59 11.59 7.25 12 7.25C12.41 7.25 12.75 7.59 12.75 8V11.25H16C16.41 11.25 16.75 11.59 16.75 12C16.75 12.41 16.41 12.75 16 12.75Z" fill="#ffffff"/></svg>Add New Tool</button>
                     </a>
                 </div>
                 <% } %>
                     <% if (activeCategory) { %>
                         <a href="/coffee-tools/all-tools" class="btn-back">
-                            ArrowLeft({ weight: 'Filled', color: '#ffffff' })Back to All Tools 
+                            <!-- Icon from Reicon extention -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 11.25C20.4142 11.25 20.75 11.5858 20.75 12C20.75 12.4142 20.4142 12.75 20 12.75H10.75L10.75 18C10.75 18.3034 10.5673 18.5768 10.287 18.6929C10.0068 18.809 9.68417 18.7449 9.46967 18.5304L3.46967 12.5304C3.32902 12.3897 3.25 12.1989 3.25 12C3.25 11.8011 3.32902 11.6103 3.46967 11.4697L9.46967 5.46969C9.68417 5.25519 10.0068 5.19103 10.287 5.30711C10.5673 5.4232 10.75 5.69668 10.75 6.00002L10.75 11.25H20Z" fill="#94a3b8"/></svg>Back to All Tools 
                         </a>
                         <% } %>
                             <div class="category-section">
