@@ -125,7 +125,33 @@ http://localhost:3000
 | PUT    | `/beans/:id/update` | Submit the updated bean data, including an optional new image (admin only).                      |
 | DELETE | `/beans/:id/delete` | Trigger the soft delete (`isDeleted: true`) for a bean (admin only).                             |
 
-### Coffee Tools Routes
+### Cart Model Routes
+| Method | Route                   | Description                                                                                     |
+| ------ | ----------------------- | ----------------------------------------------------------------------------------------------- |
+| GET    | `/cart`                 | View the signed-in user's cart with its items and total price (creates an empty cart if none exists). |
+| POST   | `/cart/add`             | Add an item to the cart, or increase its quantity if it is already there.                       |
+| POST   | `/cart/remove/:itemId`  | Remove a specific item from the cart.                                                           |
+| GET    | `/cart/checkout`        | View the checkout page with the cart summary and available shipping companies.                  |
+
+### Coffee Tools Model Routes
+
+| Method | Route                          | Description                                                                                       |
+| ------ | ------------------------------ | ------------------------------------------------------------------------------------------------- |
+| GET    | `/coffee-tools`                | View the catalog list of active coffee tools, with a flag showing which are already in the cart.  |
+| GET    | `/coffee-tools/create`         | View the form to add a new coffee tool (admin only).                                              |
+| GET    | `/coffee-tools/:id`            | View the details page of a specific coffee tool.                                                  |
+| POST   | `/coffee-tools`                | Submit the new tool form data (with image upload) to save it (admin only).                        |
+| GET    | `/coffee-tools/:id/edit`       | View the update form pre-filled with a specific tool's data (admin only).                         |
+| PUT    | `/coffee-tools/:id/update`     | Submit the updated tool data, including an optional new image (admin only).                       |
+| DELETE | `/coffee-tools/:id/delete`     | Trigger the soft delete (`isDeleted: true`) for a tool (admin only).                              |
+| GET    | `/coffee-tools/category/Espresso`  | View all tools in the Espresso category.                                                      |
+| GET    | `/coffee-tools/category/Brewer`    | View all tools in the Brewer category.                                                        |
+| GET    | `/coffee-tools/category/Grinder`   | View all tools in the Grinder category.                                                       |
+| GET    | `/coffee-tools/category/filter`    | View all tools in the Filter category.                                                        |
+| GET    | `/coffee-tools/category/Dripper`   | View all tools in the Dripper category.                                                       |
+| GET    | `/coffee-tools/category/Scale`     | View all tools in the Scale category.                                                         |
+| GET    | `/coffee-tools/category/Kettle`    | View all tools in the Kettle category.                                                        |
+| GET    | `/coffee-tools/category/Accessory` | View all tools in the Accessory category.                                                     |
 
 
 ### Shippign Company Routes
