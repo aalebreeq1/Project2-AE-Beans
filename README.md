@@ -14,11 +14,11 @@ A specialized e-commerce platform that bridges specialty coffee roasters/supplie
 ### Home Page 
 ![Home](readme-img/image.png)
 ### Coffee Beans Page
-![alt text](readme-img/beans.png)
+![Beans](readme-img/beans.png)
 ### Coffee Tools Page
-![alt text](readme-img/Coffee-tools.png)
+![Tools](readme-img/Coffee-tools.png)
 ### Shipping Partner Page
-![alt text](readme-img/shipping-partne.png)
+![shipping](readme-img/shipping-partne.png)
 ### Cart Page
 ![alt text](readme-img/Cart.png)
 ### Orders Page
