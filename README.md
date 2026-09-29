@@ -91,8 +91,7 @@ http://localhost:3000
 10. As a shipping company user, I want to update the delivery progress and status of active orders assigned to me.
 
 ## Database Design
-
-![alt text](<Project2 ERD.png>)
+![ERD](<AE-Beans ERD.png>)
 
 ## Routes
 
