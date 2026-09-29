@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
       return toolObj;
     });
 
-    res.render("tools/all-tools.ejs", { allTools: toolsWithCartStatus });
+    res.render("tools/all-tools.ejs", { allTools: toolsWithCartStatus , activeCategory: null });
   } catch (err) {
     console.error(err);
     res.redirect("/");
@@ -116,7 +116,7 @@ router.delete("/:id/delete", isAdmin, async (req, res) => {
 router.get("/category/Espresso", async (req, res) => {
   try {
     const espressoTools = await CoffeeTool.find({ category: "Espresso" })
-    res.render("tools/all-tools.ejs", { allTools: espressoTools })
+    res.render("tools/all-tools.ejs", { allTools: espressoTools , activeCategory: "Espresso"})
   }
   catch (err) {
     console.log(err)
@@ -125,7 +125,7 @@ router.get("/category/Espresso", async (req, res) => {
 router.get("/category/Brewer", async (req, res) => {
   try {
     const BrewerTools = await CoffeeTool.find({ category: "Brewer" })
-    res.render("tools/all-tools.ejs", { allTools: BrewerTools })
+    res.render("tools/all-tools.ejs", { allTools: BrewerTools , activeCategory: "Brewer" })
   }
   catch (err) {
     console.log(err)
@@ -134,7 +134,7 @@ router.get("/category/Brewer", async (req, res) => {
 router.get("/category/Grinder", async (req, res) => {
   try {
     const GrinderTools = await CoffeeTool.find({ category: "Grinder" })
-    res.render("tools/all-tools.ejs", { allTools: GrinderTools })
+    res.render("tools/all-tools.ejs", { allTools: GrinderTools , activeCategory: "Grinder" })
   }
   catch (err) {
     console.log(err)
@@ -144,7 +144,7 @@ router.get("/category/Grinder", async (req, res) => {
 router.get("/category/filter", async (req, res) => {
   try {
     const filterTools = await CoffeeTool.find({ category: "Filter" })
-    res.render("tools/all-tools.ejs", { allTools: filterTools })
+    res.render("tools/all-tools.ejs", { allTools: filterTools , activeCategory: "Filter"})
 
   }
   catch (err) {
@@ -155,7 +155,7 @@ router.get("/category/filter", async (req, res) => {
 router.get("/category/Dripper", async (req, res) => {
   try {
     const DripperTools = await CoffeeTool.find({ category: "Dripper" })
-    res.render("tools/all-tools.ejs", { allTools: DripperTools })
+    res.render("tools/all-tools.ejs", { allTools: DripperTools, activeCategory: "Dripper" })
 
   }
   catch (err) {
@@ -167,7 +167,7 @@ router.get("/category/Dripper", async (req, res) => {
 router.get("/category/Scale", async (req, res) => {
   try {
     const ScaleTools = await CoffeeTool.find({ category: "Scale" })
-    res.render("tools/all-tools.ejs", { allTools: ScaleTools })
+    res.render("tools/all-tools.ejs", { allTools: ScaleTools , activeCategory: "Scale" })
 
   }
   catch (err) {
@@ -178,7 +178,7 @@ router.get("/category/Scale", async (req, res) => {
 router.get("/category/Kettle", async (req, res) => {
   try {
     const KettleTools = await CoffeeTool.find({ category: "Kettle" })
-    res.render("tools/all-tools.ejs", { allTools: KettleTools })
+    res.render("tools/all-tools.ejs", { allTools: KettleTools , activeCategory: "Kettle" })
 
   }
   catch (err) {
@@ -189,7 +189,7 @@ router.get("/category/Kettle", async (req, res) => {
 router.get("/category/Accessory", async (req, res) => {
   try {
     const AccessoryTools = await CoffeeTool.find({ category: "Accessory" })
-    res.render("tools/all-tools.ejs", { allTools: AccessoryTools })
+    res.render("tools/all-tools.ejs", { allTools: AccessoryTools , activeCategory: "Accessory" })
 
   }
   catch (err) {
