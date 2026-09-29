@@ -26,79 +26,85 @@
                     </a>
                 </div>
                 <% } %>
-
-                    <div class="category-section">
-                        <div class="categories">
-                            <div class="category">
-                                <a href="/coffee-tools/category/Accessory">Accessory</a>
-                                <a href="/coffee-tools/category/filter">Filter</a>
-                                <a href="/coffee-tools/category/Espresso">Espresso</a>
-                                <a href="/coffee-tools/category/Brewer">Brewer</a>
-                                <a href="/coffee-tools/category/Grinder">Grinder</a>
-                                <a href="/coffee-tools/category/Dripper">Dripper</a>
-                                <a href="/coffee-tools/category/Scale">Scale</a>
-                                <a href="/coffee-tools/category/Kettle">Kettle</a>
-                            </div>
-                        </div>
-                    </div>
-                    <% if (allTools && allTools.length> 0) { %>
-                        <div class="cards-grid">
-                            <% allTools.forEach(tool=> { %>
-                                <div class="bean-card">
-                                    <a href="/coffee-tools/<%= tool._id %>" class="card-overlay-link"
-                                        aria-label="<%= tool.name %> details"></a>
-
-                                    <div class="bean-image-container">
-                                        <img src="<%= tool.img_url %>" alt="<%= tool.name %>">
-                                    </div>
-
-                                    <div class="bean-info">
-                                        <h3>
-                                            <%= tool.name %>
-                                        </h3>
-                                        <p class="bean-description">
-                                            <%= tool.description %>
-                                        </p>
-                                        <div class="bean-price-row">
-                                            <span class="price">BHD <%= Number(tool.price).toFixed(3) %></span>
-                                            <% if (typeof tool.isInCart !=='undefined' && tool.isInCart) { %>
-                                                <span class="badge-cart">In Cart</span>
-                                                <% } %>
-                                        </div>
-                                    </div>
-
-                                    <div class="bean-actions">
-                                        <form action="/cart/add" method="POST"
-                                            style="width: 100%; display: flex; gap: 5px;">
-                                            <input type="hidden" name="itemType" value="CoffeeTool">
-                                            <input type="hidden" name="itemId" value="<%= tool._id %>">
-                                            <input type="hidden" name="quantity" value="1">
-                                            <button class="btn-primary" type="submit" style="width: 100%;">Add to
-                                                Cart</button>
-                                        </form>
-
-                                        <% if (typeof isAdmin !=='undefined' && isAdmin) { %>
-                                            <div class="admin-toolbar">
-                                                <span class="admin-label">Admin</span>
-                                                <div class="admin-buttons">
-                                                    <a href="/coffee-tools/<%= tool._id %>/edit"
-                                                        class="btn-secondary">Edit</a>
-                                                    <form action="/coffee-tools/<%= tool._id %>/delete?_method=DELETE"
-                                                        method="POST" style="display:inline;">
-                                                        <button class="btn-danger" type="submit">Delete</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <% } %>
+                    <% if (activeCategory) { %>
+                        <a href="/coffee-tools/all-tools" class="btn-back">
+                            ← Back to All Tools 
+                        </a>
+                        <% } %>
+                            <div class="category-section">
+                                <div class="categories">
+                                    <div class="category">
+                                        <a href="/coffee-tools/category/Accessory">Accessory</a>
+                                        <a href="/coffee-tools/category/filter">Filter</a>
+                                        <a href="/coffee-tools/category/Espresso">Espresso</a>
+                                        <a href="/coffee-tools/category/Brewer">Brewer</a>
+                                        <a href="/coffee-tools/category/Grinder">Grinder</a>
+                                        <a href="/coffee-tools/category/Dripper">Dripper</a>
+                                        <a href="/coffee-tools/category/Scale">Scale</a>
+                                        <a href="/coffee-tools/category/Kettle">Kettle</a>
                                     </div>
                                 </div>
-                                <% }); %>
-                        </div>
-                        <% } else { %>
-                            <div class="empty-state">
-                                <p>No coffee tools available right now. Check back soon!</p>
                             </div>
-                            <% } %>
+                            <% if (allTools && allTools.length> 0) { %>
+                                <div class="cards-grid">
+                                    <% allTools.forEach(tool=> { %>
+                                        <div class="bean-card">
+                                            <a href="/coffee-tools/<%= tool._id %>" class="card-overlay-link"
+                                                aria-label="<%= tool.name %> details"></a>
+
+                                            <div class="bean-image-container">
+                                                <img src="<%= tool.img_url %>" alt="<%= tool.name %>">
+                                            </div>
+
+                                            <div class="bean-info">
+                                                <h3>
+                                                    <%= tool.name %>
+                                                </h3>
+                                                <p class="bean-description">
+                                                    <%= tool.description %>
+                                                </p>
+                                                <div class="bean-price-row">
+                                                    <span class="price">BHD <%= Number(tool.price).toFixed(3) %></span>
+                                                    <% if (typeof tool.isInCart !=='undefined' && tool.isInCart) { %>
+                                                        <span class="badge-cart">In Cart</span>
+                                                        <% } %>
+                                                </div>
+                                            </div>
+
+                                            <div class="bean-actions">
+                                                <form action="/cart/add" method="POST"
+                                                    style="width: 100%; display: flex; gap: 5px;">
+                                                    <input type="hidden" name="itemType" value="CoffeeTool">
+                                                    <input type="hidden" name="itemId" value="<%= tool._id %>">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <button class="btn-primary" type="submit" style="width: 100%;">Add
+                                                        to
+                                                        Cart</button>
+                                                </form>
+
+                                                <% if (typeof isAdmin !=='undefined' && isAdmin) { %>
+                                                    <div class="admin-toolbar">
+                                                        <span class="admin-label">Admin</span>
+                                                        <div class="admin-buttons">
+                                                            <a href="/coffee-tools/<%= tool._id %>/edit"
+                                                                class="btn-secondary">Edit</a>
+                                                            <form
+                                                                action="/coffee-tools/<%= tool._id %>/delete?_method=DELETE"
+                                                                method="POST" style="display:inline;">
+                                                                <button class="btn-danger" type="submit">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                        <% }); %>
+                                </div>
+                                <% } else { %>
+                                    <div class="empty-state">
+                                        <p>No coffee tools available right now. Check back soon!</p>
+                                    </div>
+                                    <% } %>
         </main>
 
         <%- include('../partials/footer') %>

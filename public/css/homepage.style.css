@@ -190,3 +190,66 @@ body {
   font-size: 0.85rem;
   margin-top: auto;
 }
+
+.category-section {
+  margin: 24px 0;
+}
+
+.categories {
+  width: 100%;
+}
+
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.category a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  padding: 14px 20px;
+  background: #fffaf5;
+  border: 1px solid #e5d9c8;
+  border-radius: 14px;
+  color: #3b2a20;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  box-shadow: 0 1px 3px rgba(59, 42, 32, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.category a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(59, 42, 32, 0.15);
+  background: #3b2a20;
+  color: #fff;
+  border-color: #3b2a20;
+}
+
+.category a:active {
+  transform: translateY(-1px);
+}
+
+/* Optional: highlight the current category if you add an 'active' class server-side */
+.category a.active {
+  background: #3b2a20;
+  color: #fff;
+  border-color: #3b2a20;
+}
+
+@media (max-width: 600px) {
+  .category {
+    gap: 8px;
+  }
+  .category a {
+    min-width: 88px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+}
