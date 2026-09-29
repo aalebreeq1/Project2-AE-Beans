@@ -153,11 +153,33 @@ http://localhost:3000
 | GET    | `/coffee-tools/category/Kettle`    | View all tools in the Kettle category.                                                        |
 | GET    | `/coffee-tools/category/Accessory` | View all tools in the Accessory category.                                                     |
 
+### Dashboard Routes
 
-### Shippign Company Routes
+| Method | Route        | Description                                                                                                              |
+| ------ | ------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| GET    | `/dashboard` | View the admin dashboard with counts of active beans, tools, and shipping companies, plus the 5 most recent of each (admin only). |
 
+### Orders Model Routes
 
-### Orders Routes
+| Method | Route                | Description                                                                                          |
+| ------ | -------------------- | ---------------------------------------------------------------------------------------------------- |
+| GET    | `/orders`            | View the signed-in user's list of orders (excluding deleted ones).                                   |
+| POST   | `/orders`            | Place a new order from the cart's items, calculate the total, then empty the cart.                   |
+| GET    | `/orders/:id`        | View the details page of a specific order.                                                           |
+| GET    | `/orders/:id/edit`   | View the update form pre-filled with a specific order's data (admin only).                           |
+| PUT    | `/orders/:id/update` | Submit the updated order data: items, total price, shipping company, and address (admin only).       |
+
+### Shipping Companies Model Routes
+
+| Method | Route                          | Description                                                                 |
+| ------ | ------------------------------ | --------------------------------------------------------------------------- |
+| GET    | `/shipping-companies`          | View the list of active shipping companies.                                 |
+| GET    | `/shipping-companies/create`   | View the form to add a new shipping company (admin only).                   |
+| POST   | `/shipping-companies`          | Submit the new shipping company form data (with image upload) to save it (admin only). |
+| GET    | `/shipping-companies/:id`      | View the details page of a specific shipping company.                       |
+| GET    | `/shipping-companies/:id/edit` | View the update form pre-filled with a specific company's data (admin only). |
+| PUT    | `/shipping-companies/:id/update` | Submit the updated company data, including an optional new image (admin only). |
+| DELETE | `/shipping-companies/:id/delete` | Trigger the soft delete (`isDeleted: true`) for a shipping company (admin only). |
 
 
 ## Features
@@ -177,5 +199,9 @@ Safe product archiving using soft deletes (isDeleted).
 Built using Node.js, Express, MongoDB, EJS, and CSS.
 
 ## Future Enhancements
-
+* Add Payment Gateway
+* Add GoogleMap for Order Tracking
+* Add Coupon feature to orders
 ## Credits
+* thanks To Omar , Sayed Hamad , and Jamela
+* Dev tools + extention that improve my design 
