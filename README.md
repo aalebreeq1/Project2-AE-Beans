@@ -8,9 +8,9 @@ A specialized e-commerce platform that bridges specialty coffee roasters/supplie
 
 ## Screenshots
 ### Sign In Page
-![alt text](readme-img/sign-in.png)
+![sign-in](readme-img/sign-in.png)
 ### Sign Up Page
-![alt text](readme-img/Sign-up.png)
+![sign-up](readme-img/Sign-up.png)
 ### Home Page 
 ![alt text](readme-img/image.png)
 ### Coffee Beans Page
