@@ -31,7 +31,6 @@
                 <div class="cards-grid">
                     <% allBeans.forEach(bean => { %>
                         <div class="bean-card" style="position: relative;">
-                            <!-- Invisible full-card link overlay except for buttons -->
                             <a href="/beans/<%= bean._id %>" class="card-overlay-link" aria-label="<%= bean.name %> details" style="position: absolute; top: 0; left: 0; width: 100%; height: 70%; z-index: 1;"></a>
 
                             <div class="bean-image-container">

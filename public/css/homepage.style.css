@@ -236,7 +236,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* Optional: highlight the current category if you add an 'active' class server-side */
+
 .category a.active {
   background: #3b2a20;
   color: #fff;

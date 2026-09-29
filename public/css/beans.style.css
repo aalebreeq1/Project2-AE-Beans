@@ -317,7 +317,6 @@
   box-shadow: 0 6px 16px rgba(200, 109, 62, 0.3);
 }
 
-/* Bean Details Layout */
 .bean-details-container {
   display: flex;
   justify-content: center;
@@ -357,7 +356,7 @@
   height: 100%;
   object-fit: cover;
 }
-
+ 
 .bean-details-content {
   display: flex;
   flex-direction: column;
@@ -537,8 +536,6 @@
 .category a:active {
   transform: translateY(-1px);
 }
-
-/* Optional: highlight the current category if you add an 'active' class server-side */
 .category a.active {
   background: #3b2a20;
   color: #fff;

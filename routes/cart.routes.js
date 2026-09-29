@@ -56,7 +56,6 @@ router.post("/add", isSignedIn, async (req, res) => {
   }
 })
 
-// Added route to remove an item from the cart
 router.post("/remove/:itemId", isSignedIn, async (req, res) => {
   try {
     const cart = await Cart.findOne({ owner: req.session.user._id })

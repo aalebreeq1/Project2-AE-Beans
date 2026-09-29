@@ -40,7 +40,6 @@ router.post("/sign-up", async (req, res) => {
   }
 });
 
-// Sign in routes
 router.get("/sign-in", (req, res) => {
   res.render("auth/sign-in.ejs");
 });

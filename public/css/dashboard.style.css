@@ -111,7 +111,7 @@ body {
     padding: 0.85rem 1rem 0.85rem 0;
     border-bottom: 1px solid var(--line);
     color: var(--ink);
-    font-size: 0.95rem;   /* fixed: was "0.95krem", an invalid unit */
+    font-size: 0.95rem;   
     vertical-align: top;
 }
 
