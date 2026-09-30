@@ -202,6 +202,17 @@ Built using Node.js, Express, MongoDB, EJS, and CSS.
 * Add Payment Gateway
 * Add GoogleMap for Order Tracking
 * Add Coupon feature to orders
+
+## Extra Features
+```
+1- Role Management
+2- Admin Dashboard
+3- Amazing styling (based on jamela opinion )
+4- CSS Library (tailwind)
+5- Photo Upload
+6- Exporting into PDF
+```
+
 ## Credits
 * thanks To Omar , Sayed Hamad , and Jamela
 * Dev tools + extention that improve my design 
